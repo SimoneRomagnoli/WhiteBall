@@ -1,8 +1,8 @@
 package com.example.whiteball.model.entities;
 
-public class BallImpl extends EntityImpl {
+public class Ball extends EntityImpl {
 
-    public BallImpl() {
+    public Ball() {
         super();
         this.type = EntityType.BALL;
     }

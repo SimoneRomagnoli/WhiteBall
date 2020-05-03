@@ -12,6 +12,8 @@ public abstract class EntityImpl implements Entity {
     }
 
     public EntityType getType() {
-        return type;
+        return this.type;
     }
+
+    public Position getPosition() { return this.position; }
 }

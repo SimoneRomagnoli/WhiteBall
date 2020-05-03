@@ -1,5 +1,6 @@
 package com.example.whiteball.scene;
 
+import com.example.whiteball.R;
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.model.entities.EntityType;
 import com.google.common.collect.ImmutableMap;
@@ -13,7 +14,7 @@ public class SceneImpl implements Scene {
 
     static {
         LAYOUT_MAP = ImmutableMap.of(
-                //EntityType.BALL, R.id.ball
+                EntityType.BALL, R.layout.ball
         );
     }
 

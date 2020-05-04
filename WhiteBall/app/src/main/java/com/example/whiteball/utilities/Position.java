@@ -7,7 +7,7 @@ public class Position {
 
     public Position(final double x, final double y) {
         this.x = x;
-        this.x = y;
+        this.y = y;
     }
 
     public double getX() {

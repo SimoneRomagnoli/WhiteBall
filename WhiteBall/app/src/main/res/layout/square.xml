@@ -4,7 +4,7 @@
     android:id="@+id/square"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:contentDescription="square"
+    android:contentDescription="@string/square"
     android:tint="#FFFFFF"
     app:srcCompat="?android:attr/listChoiceIndicatorMultiple">
 

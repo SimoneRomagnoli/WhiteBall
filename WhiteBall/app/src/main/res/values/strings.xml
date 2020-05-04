@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WhiteBall</string>
     <string name="ball">ball</string>
+    <string name="square">square</string>
 </resources>

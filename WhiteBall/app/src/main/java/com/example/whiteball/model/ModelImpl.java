@@ -3,6 +3,7 @@ package com.example.whiteball.model;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.Square;
+import com.example.whiteball.utilities.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,8 @@ public class ModelImpl implements Model {
 
     public ModelImpl() {
         this.entities = new ArrayList<>();
-        this.entities.add(new Ball());
-        this.entities.add(new Square());
+        this.entities.add(new Ball(new Position(100.0, 700.0)));
+        this.entities.add(new Square(new Position(400.0, 300.0)));
     }
 
     public List<Entity> getEntities() {

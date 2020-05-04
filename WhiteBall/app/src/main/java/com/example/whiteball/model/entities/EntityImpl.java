@@ -7,8 +7,8 @@ public abstract class EntityImpl implements Entity {
     private Position position;
     protected EntityType type;
 
-    public EntityImpl() {
-        this.position = new Position(0.0, 0.0);
+    public EntityImpl(Position position) {
+        this.position = position;
     }
 
     public EntityType getType() {

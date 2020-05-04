@@ -3,20 +3,15 @@ package com.example.whiteball;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;
-import com.example.whiteball.model.Model;
-import com.example.whiteball.model.ModelImpl;
 import com.example.whiteball.model.entities.Entity;
-import com.example.whiteball.model.entities.EntityImpl;
 import com.example.whiteball.model.entities.EntityType;
-import com.example.whiteball.scene.Scene;
-import com.example.whiteball.scene.SceneImpl;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
@@ -45,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     public void render() {
         for (Entity entity:this.controller.getSceneEntities()) {
             View inflatedLayout = LayoutInflater.from(MainActivity.this).inflate(LAYOUT_MAP.get(entity.getType()), null, false);
+            inflatedLayout.setX((float)entity.getPosition().getX());
+            inflatedLayout.setY((float)entity.getPosition().getY());
+            System.out.println(inflatedLayout.getX());
+            System.out.println(inflatedLayout.getY());
             ((LinearLayout)findViewById(R.id.main_activity)).addView(inflatedLayout);
         }
     }

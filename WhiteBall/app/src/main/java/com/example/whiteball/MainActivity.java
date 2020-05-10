@@ -2,8 +2,8 @@ package com.example.whiteball;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,11 +12,13 @@ import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.EntityType;
+import com.example.whiteball.utilities.Position;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    public static Point DISPLAY_SIZE = new Point();
 
     private static final Map<EntityType, Integer> LAYOUT_MAP;
     static {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindowManager().getDefaultDisplay().getSize(DISPLAY_SIZE);
 
         this.controller = new ControllerImpl(this);
         render();

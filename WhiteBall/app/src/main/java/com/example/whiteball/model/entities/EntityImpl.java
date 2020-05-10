@@ -16,4 +16,6 @@ public abstract class EntityImpl implements Entity {
     }
 
     public Position getPosition() { return this.position; }
+
+    public void setPosition(Position position)  { this.position = position; }
 }

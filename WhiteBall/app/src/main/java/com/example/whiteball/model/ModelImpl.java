@@ -21,4 +21,17 @@ public class ModelImpl implements Model {
     public List<Entity> getEntities() {
         return this.entities;
     }
+
+    @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public void update(int elapsed) {
+        for(Entity entity:this.entities) {
+            Position oldPosition = entity.getPosition();
+            entity.setPosition(new Position(oldPosition.getX(), oldPosition.getY()-0.1));
+        }
+    }
 }

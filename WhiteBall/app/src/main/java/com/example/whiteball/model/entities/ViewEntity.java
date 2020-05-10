@@ -24,4 +24,8 @@ public class ViewEntity implements Entity {
     public Position getPosition() {
         return this.position;
     }
+
+    @Override
+    public void setPosition(Position position) { this.position = position; }
+
 }

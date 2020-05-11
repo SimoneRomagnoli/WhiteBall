@@ -1,18 +1,12 @@
 package com.example.whiteball.controller;
 
-import android.graphics.Canvas;
-import android.view.SurfaceHolder;
-
 import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
 
 public class GameLoop extends Thread {
-
     private static final int FPS = 30;
     private static final double PERIOD = 1E+3 / FPS;
-    //public static Canvas canvas;
 
-    //private SurfaceHolder surfaceHolder;
     private GameView gameView;
     private Model model;
 
@@ -23,7 +17,6 @@ public class GameLoop extends Thread {
         super();
         this.running = false;
 
-        //this.surfaceHolder = gameView.getSurfaceHolder();
         this.gameView = gameView;
         this.model = model;
     }
@@ -43,18 +36,6 @@ public class GameLoop extends Thread {
         while(running) {
 
             //Heart of the game loop, updating and rendering
-            /*try{
-                canvas = this.gameView.getSurfaceHolder().lockCanvas();
-                synchronized (this.gameView.getSurfaceHolder()) {
-                    this.gameView.draw(canvas);
-                    this.model.update();
-                }
-                this.gameView.getSurfaceHolder().unlockCanvasAndPost(canvas);
-
-                frameCount++;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
             this.gameView.render();
             this.model.update();
             frameCount++;

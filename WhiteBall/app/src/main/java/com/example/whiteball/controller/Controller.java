@@ -14,4 +14,6 @@ public interface Controller {
     Double getAvgFPS();
 
     List<Entity> getEntities();
+
+    void update();
 }

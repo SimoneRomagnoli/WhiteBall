@@ -14,9 +14,8 @@ public interface Model {
 
     /**
      * Update the model.
-     * @param elapsed the time elapsed from last update in milliseconds
      */
-    void update(int elapsed);
+    void update();
 
     /**
      *

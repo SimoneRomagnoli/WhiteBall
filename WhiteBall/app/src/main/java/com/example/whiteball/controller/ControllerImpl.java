@@ -17,7 +17,7 @@ public class ControllerImpl implements Controller {
         this.model = new ModelImpl();
         this.gameView = gameView;
         this.gameView.launch(this);
-        this.gameLoop = new GameLoop(this.gameView.getSurfaceHolder(), this.gameView);
+        this.gameLoop = new GameLoop(this.gameView.getSurfaceHolder(), this.gameView, this);
     }
 
     @Override
@@ -38,6 +38,11 @@ public class ControllerImpl implements Controller {
     @Override
     public List<Entity> getEntities() {
         return this.model.getEntities();
+    }
+
+    @Override
+    public void update() {
+        this.model.update();
     }
 
 

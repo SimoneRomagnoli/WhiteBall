@@ -22,8 +22,4 @@ public class Ball extends EntityImpl implements Entity {
         canvas.drawCircle(this.point.x, this.point.y, RADIUS, paint);
     }
 
-    @Override
-    public void update() {
-
-    }
 }

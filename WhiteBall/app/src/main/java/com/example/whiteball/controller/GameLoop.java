@@ -7,28 +7,24 @@ import com.example.whiteball.view.GameView;
 
 public class GameLoop extends Thread {
 
-    //private Model model;
-    //private MainActivity activity;
-    //private boolean running;
-    //private boolean paused;
-
     private static final int FPS = 30;
     private static final double PERIOD = 1E+3 / FPS;
-    private final GameView gameView;
-    private double avgFPS = 0;
-    private SurfaceHolder surfaceHolder;
-    private boolean running;
     public static Canvas canvas;
 
-    public GameLoop(SurfaceHolder surfaceHolder, GameView gameView) {
+    private SurfaceHolder surfaceHolder;
+    private GameView gameView;
+    private Controller controller;
+
+    private double avgFPS = 0;
+    private boolean running;
+
+    public GameLoop(SurfaceHolder surfaceHolder, GameView gameView, Controller controller) {
         super();
         this.running = false;
-        //this.paused = false;
-        //this.model = model;
-        //this.activity = activity;
 
         this.surfaceHolder = surfaceHolder;
         this.gameView = gameView;
+        this.controller = controller;
     }
 
     @Override
@@ -50,6 +46,7 @@ public class GameLoop extends Thread {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
                     this.gameView.draw(canvas);
+                    this.controller.update();
                 }
                 surfaceHolder.unlockCanvasAndPost(canvas);
 

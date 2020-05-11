@@ -10,4 +10,14 @@ public abstract class EntityImpl implements Entity {
     public EntityImpl(Point point) {
         this.point = point;
     }
+
+    @Override
+    public void setPoint(Point point) {
+        this.point = point;
+    }
+
+    @Override
+    public Point getPoint() {
+        return this.point;
+    }
 }

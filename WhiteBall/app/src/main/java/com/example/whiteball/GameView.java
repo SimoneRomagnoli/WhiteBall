@@ -8,6 +8,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.whiteball.controller.GameLoop;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
@@ -47,7 +49,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         String str = Double.toString(this.gameLoop.getAvgFPS());
         Paint paint = new Paint();
-        paint.setColor(R.color.magenta);
+        paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
         paint.setTextSize(20);
         canvas.drawText("FPS: "+str, 10, 20, paint);
     }

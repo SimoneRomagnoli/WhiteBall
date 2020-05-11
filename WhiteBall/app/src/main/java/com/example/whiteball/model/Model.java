@@ -1,16 +1,8 @@
 package com.example.whiteball.model;
 
-import com.example.whiteball.model.entities.Entity;
-
 import java.util.List;
 
 public interface Model {
-
-    /**
-     *
-     * @return the model entities
-     */
-    List<Entity> getEntities();
 
     /**
      *

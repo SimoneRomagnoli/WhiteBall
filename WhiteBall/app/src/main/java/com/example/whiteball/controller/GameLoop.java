@@ -5,9 +5,7 @@ import android.view.SurfaceHolder;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.whiteball.MainActivity;
-import com.example.whiteball.gameview.GameView;
-import com.example.whiteball.model.Model;
+import com.example.whiteball.GameView;
 
 public class GameLoop extends Thread {
 
@@ -18,9 +16,9 @@ public class GameLoop extends Thread {
 
     private static final int FPS = 30;
     private static final double PERIOD = 1E+3 / FPS;
+    private final GameView gameView;
     private double avgFPS = 0;
     private SurfaceHolder surfaceHolder;
-    private GameView gameView;
     private boolean running;
     public static Canvas canvas;
 

@@ -3,9 +3,7 @@ package com.example.whiteball.controller;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.whiteball.GameView;
+import com.example.whiteball.view.GameView;
 
 public class GameLoop extends Thread {
 

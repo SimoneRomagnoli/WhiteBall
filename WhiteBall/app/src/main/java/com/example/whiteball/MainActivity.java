@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;
+import com.example.whiteball.view.GameView;
 
 public class MainActivity extends AppCompatActivity {
 

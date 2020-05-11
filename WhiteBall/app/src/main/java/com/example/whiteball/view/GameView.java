@@ -1,4 +1,4 @@
-package com.example.whiteball;
+package com.example.whiteball.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,18 +6,18 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.whiteball.R;
 import com.example.whiteball.controller.Controller;
-import com.example.whiteball.controller.ControllerImpl;
-import com.example.whiteball.controller.GameLoop;
+import com.example.whiteball.model.entities.Entity;
+
+import java.util.List;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Context context;
-    //private GameLoop gameLoop;
     private Controller controller;
 
     public GameView(Context context) {
@@ -25,8 +25,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         this.context = context;
 
         getHolder().addCallback(this);
-
-        //this.gameLoop = new GameLoop(getHolder(), this);
 
         setFocusable(true);
     }
@@ -50,11 +48,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        String str = Double.toString(this.controller.getAvgFPS());
-        Paint paint = new Paint();
-        paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
-        paint.setTextSize(20);
-        canvas.drawText("FPS: "+str, 10, 20, paint);
+        //this.printFPS(canvas);
+        render(canvas);
     }
 
     public void launch(Controller controller) {
@@ -63,5 +58,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public SurfaceHolder getSurfaceHolder() {
         return getHolder();
+    }
+
+    private void printFPS(Canvas canvas) {
+        String str = Double.toString(this.controller.getAvgFPS());
+        Paint paint = new Paint();
+        paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
+        paint.setTextSize(20);
+        canvas.drawText("FPS: "+str, 10, 20, paint);
+    }
+
+    private void render(Canvas canvas) {
+        List<Entity> entities = this.controller.getEntities();
+        for(Entity entity:entities) {
+            entity.draw(canvas);
+        }
     }
 }

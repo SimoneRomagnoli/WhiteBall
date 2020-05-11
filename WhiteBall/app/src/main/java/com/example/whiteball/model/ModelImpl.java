@@ -4,7 +4,6 @@ import android.graphics.Point;
 
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
-import com.example.whiteball.model.entities.EntityImpl;
 
 import java.util.ArrayList;
 import java.util.List;

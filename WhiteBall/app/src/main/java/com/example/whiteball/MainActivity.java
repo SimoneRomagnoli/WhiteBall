@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.whiteball.controller.Controller;
+import com.example.whiteball.controller.ControllerImpl;
+
 public class MainActivity extends AppCompatActivity {
 
     private GameView gameView;
+    private Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //this.gameView = new GameView(this);
-        setContentView(new GameView(this));
+        this.gameView = new GameView(this);
+        this.controller = new ControllerImpl(this.gameView);
+        setContentView(gameView);
 
     }
 }

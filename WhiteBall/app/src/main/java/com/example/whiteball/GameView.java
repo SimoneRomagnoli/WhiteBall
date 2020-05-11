@@ -10,12 +10,15 @@ import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.whiteball.controller.Controller;
+import com.example.whiteball.controller.ControllerImpl;
 import com.example.whiteball.controller.GameLoop;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Context context;
-    private GameLoop gameLoop;
+    //private GameLoop gameLoop;
+    private Controller controller;
 
     public GameView(Context context) {
         super(context);
@@ -23,14 +26,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         getHolder().addCallback(this);
 
-        this.gameLoop = new GameLoop(getHolder(), this);
+        //this.gameLoop = new GameLoop(getHolder(), this);
 
         setFocusable(true);
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        this.gameLoop.startGameLoop();
+        this.controller.startGameLoop();
     }
 
     @Override
@@ -47,11 +50,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        String str = Double.toString(this.gameLoop.getAvgFPS());
+        String str = Double.toString(this.controller.getAvgFPS());
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
         paint.setTextSize(20);
         canvas.drawText("FPS: "+str, 10, 20, paint);
     }
 
+    public void launch(Controller controller) {
+        this.controller = controller;
+    }
+
+    public SurfaceHolder getSurfaceHolder() {
+        return getHolder();
+    }
 }

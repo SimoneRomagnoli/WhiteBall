@@ -5,6 +5,7 @@ import android.util.Pair;
 
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
+import com.example.whiteball.model.entities.Square;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class ModelImpl implements Model {
         this.player = new Ball(new Point(X_RANGE.first, Y_COORDINATE));
 
         this.entities.add(this.player);
+        this.entities.add(new Square(new Point(200, 200)));
     }
 
     @Override

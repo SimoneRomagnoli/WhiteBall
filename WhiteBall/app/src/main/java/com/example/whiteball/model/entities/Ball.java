@@ -9,17 +9,18 @@ import com.example.whiteball.R;
 
 public class Ball extends EntityImpl implements Entity {
 
-    private static final float RADIUS = (float) 20.0;
+    public static final float RADIUS = (float) 20.0;
 
-    public Ball(Point point) {
-        super(point);
+    public Ball(Point position) {
+        super(position);
+        this.type = EntityType.BALL;
     }
 
     @Override
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(this.point.x, this.point.y, RADIUS, paint);
+        canvas.drawCircle(this.getPosition().x, this.getPosition().y, RADIUS, paint);
     }
 
 }

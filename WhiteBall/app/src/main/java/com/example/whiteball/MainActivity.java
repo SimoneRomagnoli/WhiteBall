@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;
+import com.example.whiteball.model.Model;
+import com.example.whiteball.model.ModelImpl;
 import com.example.whiteball.view.GameView;
+import com.example.whiteball.view.GameViewImpl;
 
 public class MainActivity extends AppCompatActivity {
     public static Point DISPLAY_SIZE = new Point();
 
-    private GameView gameView;
     private Controller controller;
 
     @Override
@@ -25,9 +28,17 @@ public class MainActivity extends AppCompatActivity {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        this.gameView = new GameView(this);
-        this.controller = new ControllerImpl(this.gameView);
-        setContentView(gameView);
+        final Model model = new ModelImpl();
+        final GameView gameView = new GameViewImpl(this);
+        this.controller = new ControllerImpl(model, gameView);
+        gameView.launch(this.controller);
 
+        setContentView((View) gameView);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.controller.stopGameLoop();
     }
 }

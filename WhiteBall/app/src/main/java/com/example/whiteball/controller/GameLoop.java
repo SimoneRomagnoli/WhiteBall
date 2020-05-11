@@ -3,28 +3,29 @@ package com.example.whiteball.controller;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
 
 public class GameLoop extends Thread {
 
     private static final int FPS = 30;
     private static final double PERIOD = 1E+3 / FPS;
-    public static Canvas canvas;
+    //public static Canvas canvas;
 
-    private SurfaceHolder surfaceHolder;
+    //private SurfaceHolder surfaceHolder;
     private GameView gameView;
-    private Controller controller;
+    private Model model;
 
     private double avgFPS = 0;
     private boolean running;
 
-    public GameLoop(SurfaceHolder surfaceHolder, GameView gameView, Controller controller) {
+    public GameLoop(GameView gameView, Model model) {
         super();
         this.running = false;
 
-        this.surfaceHolder = surfaceHolder;
+        //this.surfaceHolder = gameView.getSurfaceHolder();
         this.gameView = gameView;
-        this.controller = controller;
+        this.model = model;
     }
 
     @Override
@@ -42,18 +43,21 @@ public class GameLoop extends Thread {
         while(running) {
 
             //Heart of the game loop, updating and rendering
-            try{
-                canvas = this.surfaceHolder.lockCanvas();
-                synchronized (surfaceHolder) {
+            /*try{
+                canvas = this.gameView.getSurfaceHolder().lockCanvas();
+                synchronized (this.gameView.getSurfaceHolder()) {
                     this.gameView.draw(canvas);
-                    this.controller.update();
+                    this.model.update();
                 }
-                surfaceHolder.unlockCanvasAndPost(canvas);
+                this.gameView.getSurfaceHolder().unlockCanvasAndPost(canvas);
 
                 frameCount++;
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
+            this.gameView.render();
+            this.model.update();
+            frameCount++;
 
             //Pause game loop to reach the target FPS
             elapsedTime = System.currentTimeMillis() - startTime;
@@ -76,11 +80,6 @@ public class GameLoop extends Thread {
         }
     }
 
-
-    public void setRunning(boolean isRunning) {
-        this.running = isRunning;
-    }
-
     public double getAvgFPS() {
         return this.avgFPS;
     }
@@ -88,5 +87,9 @@ public class GameLoop extends Thread {
     public void startGameLoop() {
         running = true;
         start();
+    }
+
+    public void stopGameLoop() {
+        running = false;
     }
 }

@@ -6,7 +6,9 @@ import android.graphics.Point;
 public interface Entity {
     public void draw(Canvas canvas);
 
-    public void setPoint(Point point);
+    public void setPosition(Point point);
 
-    public Point getPoint();
+    public Point getPosition();
+
+    public EntityType getType();
 }

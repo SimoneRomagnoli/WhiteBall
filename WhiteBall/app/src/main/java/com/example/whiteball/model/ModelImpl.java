@@ -32,12 +32,12 @@ public class ModelImpl implements Model {
 
     @Override
     public void update() {
-        Point oldPoint = player.getPoint();
+        Point oldPoint = player.getPosition();
         if(oldPoint.x > X_RANGE.second) {
-            player.setPoint(new Point(X_RANGE.first, Y_COORDINATE));
+            player.setPosition(new Point(X_RANGE.first, Y_COORDINATE));
         } else {
             Point newPoint = new Point(oldPoint.x+2, oldPoint.y);
-            player.setPoint(newPoint);
+            player.setPosition(newPoint);
         }
 
     }

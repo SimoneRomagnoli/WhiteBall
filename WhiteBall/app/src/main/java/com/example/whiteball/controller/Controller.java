@@ -7,13 +7,11 @@ import java.util.List;
 
 public interface Controller {
 
-    Model getModel();
-
     void startGameLoop();
+
+    void stopGameLoop();
 
     Double getAvgFPS();
 
     List<Entity> getEntities();
-
-    void update();
 }

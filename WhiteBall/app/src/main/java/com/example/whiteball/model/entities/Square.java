@@ -8,12 +8,13 @@ import android.graphics.Rect;
 
 public class Square extends EntityImpl implements Entity {
 
-    private static final int EDGE = 40;
+    public static final int EDGE = 40;
     private Rect rectangle;
 
-    public Square(Point point) {
-        super(point);
-        this.rectangle = new Rect(this.point.x, this.point.y, this.point.x + EDGE, this.point.y + EDGE);
+    public Square(Point position) {
+        super(position);
+        this.type = EntityType.SQUARE;
+        //this.rectangle = new Rect(this.getPosition().x, this.getPosition().y, this.getPosition().x + EDGE, this.getPosition().y + EDGE);
     }
 
     @Override

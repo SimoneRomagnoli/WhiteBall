@@ -12,31 +12,21 @@ import java.util.List;
 public class ControllerImpl implements Controller {
 
     private Model model;
-    private GameView gameView;
     //private GameLoop gameLoop;
 
-    public ControllerImpl(GameView gameView) {
+    public ControllerImpl() {
         this.model = new ModelImpl();
         //this.gameLoop = new GameLoop(gameView.getHolder(), gameView);
-        this.gameView = gameView;
     }
 
     @Override
-    public List<ViewEntity> getSceneEntities() {
-        return toSceneEntities(this.model.getEntities());
+    public List<Entity> getEntities() {
+        return this.model.getEntities();
     }
 
     @Override
     public Model getModel() {
         return this.model;
-    }
-
-    private List<ViewEntity> toSceneEntities(List<Entity> entities) {
-        List<ViewEntity> list = new ArrayList<>();
-        for (Entity entity:entities) {
-            list.add(new ViewEntity(entity));
-        }
-        return list;
     }
 
 }

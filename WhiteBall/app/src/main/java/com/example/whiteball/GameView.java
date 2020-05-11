@@ -48,7 +48,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         String str = Double.toString(this.gameLoop.getAvgFPS());
         Paint paint = new Paint();
         paint.setColor(R.color.magenta);
-        canvas.drawText("FPS: "+str, 10, 10, paint);
+        paint.setTextSize(20);
+        canvas.drawText("FPS: "+str, 10, 20, paint);
     }
 
 }

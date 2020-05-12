@@ -10,22 +10,19 @@ public class GameLoop extends Thread {
 
     private static final int FPS = 30;
     private static final double PERIOD = 1E+3 / FPS;
-    //public static Canvas canvas;
 
-    //private SurfaceHolder surfaceHolder;
     private GameView gameView;
-    private Model model;
+    private Controller controller;
 
     private double avgFPS = 0;
     private boolean running;
 
-    public GameLoop(GameView gameView, Model model) {
+    public GameLoop(GameView gameView, Controller controller) {
         super();
         this.running = false;
 
-        //this.surfaceHolder = gameView.getSurfaceHolder();
         this.gameView = gameView;
-        this.model = model;
+        this.controller = controller;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class GameLoop extends Thread {
                 e.printStackTrace();
             }*/
             this.gameView.render();
-            this.model.update();
+            this.controller.update();
             frameCount++;
 
             //Pause game loop to reach the target FPS

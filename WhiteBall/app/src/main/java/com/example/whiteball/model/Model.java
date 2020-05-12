@@ -15,7 +15,7 @@ public interface Model {
     /**
      * Update the model.
      */
-    void update();
+    void update(float input);
 
     /**
      *
@@ -23,4 +23,5 @@ public interface Model {
      */
     List<Entity> getEntities();
 
+    void executeInput(float input);
 }

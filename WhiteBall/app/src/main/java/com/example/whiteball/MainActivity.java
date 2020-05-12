@@ -2,11 +2,18 @@ package com.example.whiteball;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;

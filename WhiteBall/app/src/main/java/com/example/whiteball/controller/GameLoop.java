@@ -8,17 +8,17 @@ public class GameLoop extends Thread {
     private static final double PERIOD = 1E+3 / FPS;
 
     private GameView gameView;
-    private Model model;
+    private Controller controller;
 
     private double avgFPS = 0;
     private boolean running;
 
-    public GameLoop(GameView gameView, Model model) {
+    public GameLoop(GameView gameView, Controller controller) {
         super();
         this.running = false;
 
         this.gameView = gameView;
-        this.model = model;
+        this.controller = controller;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class GameLoop extends Thread {
 
             //Heart of the game loop, updating and rendering
             this.gameView.render();
-            this.model.update();
+            this.controller.update();
             frameCount++;
 
             //Pause game loop to reach the target FPS

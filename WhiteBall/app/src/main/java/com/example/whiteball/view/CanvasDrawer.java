@@ -7,9 +7,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.example.whiteball.Constants;
-import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.EntityType;
-import com.example.whiteball.model.entities.Square;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
@@ -31,7 +29,7 @@ public class CanvasDrawer {
     private static void drawBall(Canvas canvas, Point position) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(position.x, position.y, Constants.PLAYER_RADIUS, paint);
+        canvas.drawCircle(position.x, position.y, Constants.PLAYER_RADIUS_FLOAT, paint);
     }
 
     private static void drawSquare(Canvas canvas, Point position) {

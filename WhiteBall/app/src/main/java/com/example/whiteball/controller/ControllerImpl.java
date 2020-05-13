@@ -1,6 +1,10 @@
 package com.example.whiteball.controller;
 
+import android.widget.Toast;
+
+import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.Entity;
+import com.example.whiteball.model.entities.EntityType;
 import com.example.whiteball.view.GameView;
 import com.example.whiteball.model.Model;
 
@@ -44,8 +48,24 @@ public class ControllerImpl implements Controller {
     public void update() {
         this.inputManager.execute(this.model);
         this.model.update();
+        if(this.anyCollision()) {
+            Toast.makeText(Constants.CURRENT_CONTEXT, "Collisione trovata", Toast.LENGTH_SHORT).show();
+        }
     }
 
+    private boolean anyCollision() {
+        boolean collisions = false;
+        Entity player = this.model.getPlayer();
+        List<Entity> entities = this.model.getEntities();
 
+        for (Entity entity:entities) {
+            if(entity.getType() != EntityType.BALL) {
+                if(!player.getArea().getRegion().quickReject(entity.getArea().getRegion())) {
+                    collisions = true;
+                }
+            }
+        }
+        return collisions;
+    }
 
 }

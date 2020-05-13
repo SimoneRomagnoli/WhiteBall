@@ -8,8 +8,8 @@ import android.graphics.Rect;
 
 public class Square extends EntityImpl implements Entity {
 
-    public Square(Point position) {
-        super(position);
+    public Square(Point position, int radius) {
+        super(position, radius);
         this.type = EntityType.SQUARE;
 
     }

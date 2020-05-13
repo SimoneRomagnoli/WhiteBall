@@ -1,15 +1,13 @@
 package com.example.whiteball.model;
 
 import android.graphics.Point;
-import android.hardware.SensorManager;
-import android.util.Pair;
 
 import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.Square;
-import com.example.whiteball.model.entities.Velocity;
-import com.example.whiteball.model.entities.VelocityImpl;
+import com.example.whiteball.model.entities.properties.Velocity;
+import com.example.whiteball.model.entities.properties.VelocityImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +20,10 @@ public class ModelImpl implements Model {
 
     public ModelImpl() {
         this.entities = new ArrayList<>();
-        this.player = new Ball(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE));
-        //this.player.setVelocity(new VelocityImpl(5, 0));
-
+        this.player = new Ball(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE), Constants.PLAYER_RADIUS_INT);
         this.entities.add(this.player);
-        Square square = new Square(new Point(200, 0));
+
+        Square square = new Square(new Point(200, 0), Constants.SQUARE_EDGE);
         square.setVelocity(new VelocityImpl(0, 4));
         this.entities.add(square);
     }
@@ -58,6 +55,11 @@ public class ModelImpl implements Model {
     @Override
     public List<Entity> getEntities() {
         return this.entities;
+    }
+
+    @Override
+    public Entity getPlayer() {
+        return this.player;
     }
 
     @Override

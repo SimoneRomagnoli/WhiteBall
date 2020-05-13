@@ -1,4 +1,6 @@
-package com.example.whiteball.model.entities;
+package com.example.whiteball.model.entities.properties;
+
+import com.example.whiteball.model.entities.properties.Velocity;
 
 public class VelocityImpl implements Velocity {
 

@@ -1,4 +1,4 @@
-package com.example.whiteball.model.entities;
+package com.example.whiteball.model.entities.properties;
 
 public interface Velocity {
 

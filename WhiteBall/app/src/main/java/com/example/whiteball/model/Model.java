@@ -23,5 +23,7 @@ public interface Model {
      */
     List<Entity> getEntities();
 
+    Entity getPlayer();
+
     void executeInput(float input);
 }

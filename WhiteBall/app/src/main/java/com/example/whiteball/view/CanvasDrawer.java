@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.EntityType;
 import com.example.whiteball.model.entities.Square;
@@ -30,11 +31,11 @@ public class CanvasDrawer {
     private static void drawBall(Canvas canvas, Point position) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(position.x, position.y, Ball.RADIUS, paint);
+        canvas.drawCircle(position.x, position.y, Constants.PLAYER_RADIUS, paint);
     }
 
     private static void drawSquare(Canvas canvas, Point position) {
-        final Rect rectangle = new Rect(position.x, position.y, position.x + Square.EDGE, position.y + Square.EDGE);
+        final Rect rectangle = new Rect(position.x, position.y, position.x + Constants.SQUARE_EDGE, position.y + Constants.SQUARE_EDGE);
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         canvas.drawRect(rectangle, paint);

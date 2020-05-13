@@ -4,26 +4,31 @@ import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.util.Pair;
 
+import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.Square;
+import com.example.whiteball.model.entities.Velocity;
+import com.example.whiteball.model.entities.VelocityImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModelImpl implements Model {
 
-    private final Pair<Integer, Integer> X_RANGE = new Pair<Integer, Integer>(20, 450);
-    private final int Y_COORDINATE = 750;
+    private final int Y_COORDINATE = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 10;
     private List<Entity> entities;
     private Ball player;
 
     public ModelImpl() {
         this.entities = new ArrayList<>();
-        this.player = new Ball(new Point(X_RANGE.first, Y_COORDINATE));
+        this.player = new Ball(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE));
+        //this.player.setVelocity(new VelocityImpl(5, 0));
 
         this.entities.add(this.player);
-        this.entities.add(new Square(new Point(200, 200)));
+        Square square = new Square(new Point(200, 0));
+        square.setVelocity(new VelocityImpl(0, 4));
+        this.entities.add(square);
     }
 
     @Override
@@ -32,21 +37,21 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public void update(float input) {
-        Point oldPoint = player.getPosition();
-        if(oldPoint.x > X_RANGE.second) {
-            player.setPosition(new Point(X_RANGE.first, Y_COORDINATE));
-        } else if(oldPoint.x < X_RANGE.first) {
-            player.setPosition(new Point(X_RANGE.second, Y_COORDINATE));
-        } else {
-            float move = 0;
-            if(input > 0.5f) {
-                move = 4 * input;
-            } else if(input < -0.5f) {
-                move = 4 * input;
+    public void update() {
+        for (Entity entity: this.entities) {
+            Point old = entity.getPosition();
+            if(old.x > Constants.SCREEN_WIDTH) {
+                entity.setPosition(new Point(0, old.y));
+            } else if(old.x < 0) {
+                entity.setPosition(new Point(Constants.SCREEN_WIDTH, old.y));
+            } else if(old.y > Constants.SCREEN_HEIGHT) {
+                entity.setPosition(new Point(old.x, 0));
+            } else if(old.y < 0) {
+                entity.setPosition(new Point(old.x, Constants.SCREEN_HEIGHT));
+            } else {
+                Velocity velocity = entity.getVelocity();
+                entity.setPosition(new Point(old.x + velocity.getX(), old.y + velocity.getY()));
             }
-            Point newPoint = new Point(oldPoint.x + (int)move, oldPoint.y);
-            player.setPosition(newPoint);
         }
     }
 
@@ -57,20 +62,10 @@ public class ModelImpl implements Model {
 
     @Override
     public void executeInput(float input) {
-        Point oldPoint = player.getPosition();
-        if(oldPoint.x > X_RANGE.second) {
-            player.setPosition(new Point(X_RANGE.first, Y_COORDINATE));
-        } else if(oldPoint.x < X_RANGE.first) {
-            player.setPosition(new Point(X_RANGE.second, Y_COORDINATE));
+        if(input > -1f && input < 1f) {
+            this.player.setVelocity(new VelocityImpl(0, 0));
         } else {
-            int move = 0;
-            if(input > 0.5f) {
-                move = 2;
-            } else if(input < -0.5f) {
-                move = -2;
-            }
-            Point newPoint = new Point(oldPoint.x + move, oldPoint.y);
-            player.setPosition(newPoint);
+            this.player.setVelocity(new VelocityImpl(-(int)(input * Constants.GYROSCOPE_SENSITIVITY), 0));
         }
     }
 }

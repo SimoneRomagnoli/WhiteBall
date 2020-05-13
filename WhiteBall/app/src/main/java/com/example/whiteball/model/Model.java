@@ -15,7 +15,7 @@ public interface Model {
     /**
      * Update the model.
      */
-    void update(float input);
+    void update();
 
     /**
      *

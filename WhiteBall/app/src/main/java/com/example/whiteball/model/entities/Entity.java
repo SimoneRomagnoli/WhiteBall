@@ -4,11 +4,15 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 
 public interface Entity {
-    public void draw(Canvas canvas);
+    void draw(Canvas canvas);
 
-    public void setPosition(Point point);
+    void setPosition(Point point);
 
-    public Point getPosition();
+    Point getPosition();
 
-    public EntityType getType();
+    EntityType getType();
+
+    Velocity getVelocity();
+
+    void setVelocity(Velocity velocity);
 }

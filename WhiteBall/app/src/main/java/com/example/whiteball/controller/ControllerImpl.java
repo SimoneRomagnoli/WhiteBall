@@ -1,10 +1,7 @@
 package com.example.whiteball.controller;
 
-import android.hardware.SensorManager;
-
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.view.GameView;
-import com.example.whiteball.view.GameViewImpl;
 import com.example.whiteball.model.Model;
 
 import java.util.List;
@@ -14,12 +11,12 @@ public class ControllerImpl implements Controller {
     private GameView gameView;
     private Model model;
     private GameLoop gameLoop;
-    private Orientation orientation;
+    private InputManager inputManager;
 
     public ControllerImpl(Model model, GameView gameView) {
         this.model = model;
         this.gameView = gameView;
-        this.orientation = new Orientation(this);
+        this.inputManager = new InputManager(this);
     }
 
     @Override
@@ -45,7 +42,8 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void update() {
-        this.orientation.execute(this.model);
+        this.inputManager.execute(this.model);
+        this.model.update();
     }
 
 

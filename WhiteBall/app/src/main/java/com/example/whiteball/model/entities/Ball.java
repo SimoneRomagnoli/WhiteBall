@@ -5,11 +5,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-import com.example.whiteball.R;
+import com.example.whiteball.Constants;
 
 public class Ball extends EntityImpl implements Entity {
 
-    public static final float RADIUS = (float) 20.0;
 
     public Ball(Point position) {
         super(position);
@@ -18,9 +17,6 @@ public class Ball extends EntityImpl implements Entity {
 
     @Override
     public void draw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        canvas.drawCircle(this.getPosition().x, this.getPosition().y, RADIUS, paint);
     }
 
 }

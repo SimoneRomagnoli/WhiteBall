@@ -1,6 +1,5 @@
 package com.example.whiteball.controller;
 
-import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
 
 public class GameLoop extends Thread {

@@ -4,10 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -51,7 +47,7 @@ public class GameViewImpl extends SurfaceView implements GameView {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         this.render(canvas);
-        //this.printFPS(canvas);
+        this.printFPS(canvas);
     }
 
     @Override

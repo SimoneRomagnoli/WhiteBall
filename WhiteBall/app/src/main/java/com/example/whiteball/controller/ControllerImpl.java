@@ -21,7 +21,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void startGameLoop() {
-        this.gameLoop = new GameLoop(this.gameView, this);
+        this.gameLoop = new GameLoop(this.gameView, this.model);
         this.gameLoop.startGameLoop();
     }
 
@@ -40,12 +40,9 @@ public class ControllerImpl implements Controller {
         return this.model.getEntities();
     }
 
-    @Override
     public void update() {
         this.inputManager.execute(this.model);
         this.model.update();
     }
-
-
 
 }

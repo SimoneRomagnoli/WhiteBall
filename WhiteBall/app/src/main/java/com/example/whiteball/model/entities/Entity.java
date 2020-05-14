@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 
 public interface Entity {
-    void draw(Canvas canvas);
-
     void setPosition(Point point);
 
     Point getPosition();

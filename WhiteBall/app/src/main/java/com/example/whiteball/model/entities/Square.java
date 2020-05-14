@@ -13,8 +13,4 @@ public class Square extends EntityImpl implements Entity {
         this.type = EntityType.SQUARE;
 
     }
-
-    @Override
-    public void draw(Canvas canvas) {
-    }
 }

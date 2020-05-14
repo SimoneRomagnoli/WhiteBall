@@ -15,8 +15,4 @@ public class Ball extends EntityImpl implements Entity {
         this.type = EntityType.BALL;
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-    }
-
 }

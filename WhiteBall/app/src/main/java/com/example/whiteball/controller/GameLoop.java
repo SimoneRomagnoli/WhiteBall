@@ -2,17 +2,20 @@ package com.example.whiteball.controller;
 
 import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
+import com.google.common.collect.ImmutableList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLoop extends Thread {
-    private static final int FPS = 30;
-
+    private static final int FPS = 60;
     private final long frameRate;
 
     private GameView gameView;
     private Model model;
-
     private double avgFPS = 0;
     private boolean isRunning;
+    private List<Command> commands;
 
     public GameLoop(GameView gameView, Model model) {
         super();
@@ -21,6 +24,7 @@ public class GameLoop extends Thread {
         this.gameView = gameView;
         this.model = model;
         this.frameRate = (long) (1 / (this.FPS * 0.001));
+        this.commands = new ArrayList<>();
     }
 
     @Override
@@ -28,7 +32,7 @@ public class GameLoop extends Thread {
         super.run();
         int frameCount = 0;
         long lastTime = System.currentTimeMillis();
-        long totalTime = lastTime;
+        long startTime = lastTime;
         while(this.isRunning) {
             final long currentTime = System.currentTimeMillis();
 
@@ -43,12 +47,13 @@ public class GameLoop extends Thread {
             this.waitForNextFrame(currentTime);
 
             //Calculate FPS
-            totalTime += elapsedTime;
-            if(totalTime >= 1000) {
-                avgFPS =  frameCount / (1E+3 * totalTime);
+            long frameTime = System.currentTimeMillis() - startTime;
+            if(frameTime >= 1000) {
+                avgFPS =  frameCount / (1E-3 * frameTime);
                 frameCount = 0;
-                totalTime = System.currentTimeMillis();
+                startTime = System.currentTimeMillis();
             }
+
             lastTime = currentTime;
         }
     }
@@ -66,16 +71,21 @@ public class GameLoop extends Thread {
         this.isRunning = false;
     }
 
-    private void processInput() {
+    public void addInput(Command command) {
+        this.commands.add(command);
+    }
 
+    private void processInput() {
+        this.model.resolveInputs(ImmutableList.copyOf(this.commands));
+        this.commands = new ArrayList<>();
     }
 
     private void render() {
         this.gameView.render();
     }
 
-    private void update(final double elapsedTime) {
-        this.model.update();
+    private void update(final long elapsedTime) {
+        this.model.update(elapsedTime);
     }
 
     private void waitForNextFrame(final long currentTime) {

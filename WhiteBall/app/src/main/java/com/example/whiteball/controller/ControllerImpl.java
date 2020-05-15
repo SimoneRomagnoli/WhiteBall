@@ -6,7 +6,7 @@ import com.example.whiteball.model.Model;
 
 import java.util.List;
 
-public class ControllerImpl implements Controller {
+public class ControllerImpl implements Controller, InputObserver {
 
     private GameView gameView;
     private Model model;
@@ -17,6 +17,7 @@ public class ControllerImpl implements Controller {
         this.model = model;
         this.gameView = gameView;
         this.inputManager = new InputManager(this);
+        this.inputManager.addObserver(this);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class ControllerImpl implements Controller {
         this.gameLoop.startGameLoop();
     }
 
-    //@Override
+    @Override
     public void stopGameLoop() {
         this.gameLoop.stopGameLoop();
     }
@@ -40,9 +41,8 @@ public class ControllerImpl implements Controller {
         return this.model.getEntities();
     }
 
-    public void update() {
-        this.inputManager.execute(this.model);
-        this.model.update();
+    @Override
+    public void updateObserver(Command command) {
+        this.gameLoop.addInput(command);
     }
-
 }

@@ -5,20 +5,32 @@ import android.hardware.SensorManager;
 import android.util.Pair;
 
 import com.example.whiteball.Constants;
+import com.example.whiteball.controller.Command;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.Square;
 import com.example.whiteball.model.entities.Velocity;
 import com.example.whiteball.model.entities.VelocityImpl;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ModelImpl implements Model {
-
+    private static final Map<CommandType, Integer> DIRECTION;
     private final int Y_COORDINATE = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 10;
+
     private List<Entity> entities;
     private Ball player;
+
+    static {
+        DIRECTION = ImmutableMap.of(
+                CommandType.MOVE_LEFT, -1,
+                CommandType.MOVE_RIGHT, 1
+        );
+    }
 
     public ModelImpl() {
         this.entities = new ArrayList<>();
@@ -37,7 +49,7 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public void update() {
+    public void update(final long dt) {
         for (Entity entity: this.entities) {
             Point old = entity.getPosition();
             if(old.x > Constants.SCREEN_WIDTH) {
@@ -57,15 +69,16 @@ public class ModelImpl implements Model {
 
     @Override
     public List<Entity> getEntities() {
-        return this.entities;
+        return ImmutableList.copyOf(this.entities);
     }
 
     @Override
-    public void executeInput(float input) {
-        if(input > -1f && input < 1f) {
-            this.player.setVelocity(new VelocityImpl(0, 0));
-        } else {
-            this.player.setVelocity(new VelocityImpl(-(int)(input * Constants.GYROSCOPE_SENSITIVITY), 0));
+    public void resolveInputs(List<Command> inputs) {
+        // God let me use lambdas pt.2.
+        final Velocity velocity = new VelocityImpl(0, 0);
+        for (Command command: inputs) {
+            velocity.setX(velocity.getX() + /*+ this.DIRECTION.get(command.getType())*/ Constants.GYROSCOPE_SENSITIVITY * (-(int)command.getValue()));
         }
+        this.player.setVelocity(velocity);
     }
 }

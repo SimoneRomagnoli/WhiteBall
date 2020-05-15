@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Observer;
 
 public class InputManager implements SensorEventListener, InputObservable {
+    public static final double GYROSCOPE_SENSITIVITY = 0.5;
 
     private SensorManager manager;
     private Sensor sensor;
@@ -28,17 +29,15 @@ public class InputManager implements SensorEventListener, InputObservable {
         this.manager.registerListener(this, this.sensor, SensorManager.SENSOR_DELAY_GAME);
         this.observers = new ArrayList<>();
 
-        Constants.GYROSCOPE_SENSITIVITY = 5;
-
         this.input = 0.0f;
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         this.input += event.values[2];
-        if (this.input > 1f) {
+        if (this.input > 0f) {
             this.notifyObservers(new Command(CommandType.MOVE_RIGHT, this.input));
-        } else if (this.input < -1f) {
+        } else if (this.input < 0f) {
             this.notifyObservers(new Command(CommandType.MOVE_LEFT, this.input));
         }
     }

@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import com.example.whiteball.Constants;
 import com.example.whiteball.controller.Command;
+import com.example.whiteball.controller.InputManager;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.Square;
@@ -19,18 +20,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ModelImpl implements Model {
-    private static final Map<CommandType, Integer> DIRECTION;
     private final int Y_COORDINATE = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 10;
 
     private List<Entity> entities;
     private Ball player;
-
-    static {
-        DIRECTION = ImmutableMap.of(
-                CommandType.MOVE_LEFT, -1,
-                CommandType.MOVE_RIGHT, 1
-        );
-    }
 
     public ModelImpl() {
         this.entities = new ArrayList<>();
@@ -39,7 +32,7 @@ public class ModelImpl implements Model {
 
         this.entities.add(this.player);
         Square square = new Square(new Point(200, 0));
-        square.setVelocity(new VelocityImpl(0, 4));
+        square.setVelocity(new VelocityImpl(0, 1));
         this.entities.add(square);
     }
 
@@ -52,17 +45,18 @@ public class ModelImpl implements Model {
     public void update(final long dt) {
         for (Entity entity: this.entities) {
             Point old = entity.getPosition();
-            if(old.x > Constants.SCREEN_WIDTH) {
+            if(old.x + entity.getDimension() > Constants.SCREEN_WIDTH) {
                 entity.setPosition(new Point(0, old.y));
             } else if(old.x < 0) {
-                entity.setPosition(new Point(Constants.SCREEN_WIDTH, old.y));
-            } else if(old.y > Constants.SCREEN_HEIGHT) {
+                entity.setPosition(new Point(Constants.SCREEN_WIDTH - entity.getDimension(), old.y));
+            } else if(old.y + entity.getDimension() > Constants.SCREEN_HEIGHT) {
                 entity.setPosition(new Point(old.x, 0));
             } else if(old.y < 0) {
                 entity.setPosition(new Point(old.x, Constants.SCREEN_HEIGHT));
             } else {
-                Velocity velocity = entity.getVelocity();
-                entity.setPosition(new Point(old.x + velocity.getX(), old.y + velocity.getY()));
+                entity.setPosition(new Point(
+                        (int)(old.x + entity.getVelocity().getX() * dt),
+                        (int)(old.y + entity.getVelocity().getY() * dt)));
             }
         }
     }
@@ -77,7 +71,7 @@ public class ModelImpl implements Model {
         // God let me use lambdas pt.2.
         final Velocity velocity = new VelocityImpl(0, 0);
         for (Command command: inputs) {
-            velocity.setX(velocity.getX() + /*+ this.DIRECTION.get(command.getType())*/ Constants.GYROSCOPE_SENSITIVITY * (-(int)command.getValue()));
+            velocity.setX((int)(velocity.getX() + InputManager.GYROSCOPE_SENSITIVITY * (-(int)command.getValue())));
         }
         this.player.setVelocity(velocity);
     }

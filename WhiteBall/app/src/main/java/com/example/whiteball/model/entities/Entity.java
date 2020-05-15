@@ -1,6 +1,5 @@
 package com.example.whiteball.model.entities;
 
-import android.graphics.Canvas;
 import android.graphics.Point;
 
 public interface Entity {
@@ -13,4 +12,6 @@ public interface Entity {
     Velocity getVelocity();
 
     void setVelocity(Velocity velocity);
+
+    Integer getDimension();
 }

@@ -25,17 +25,17 @@ public class CanvasDrawer {
     }
 
     public static void drawCanvas(Canvas canvas, ViewEntity viewEntity) {
-        DRAWER_MAP.get(viewEntity.getType()).draw(canvas, viewEntity.getPosition());
+        DRAWER_MAP.get(viewEntity.getType()).draw(canvas, viewEntity.getPosition(), viewEntity.getDimension());
     }
 
-    private static void drawBall(Canvas canvas, Point position) {
+    private static void drawBall(Canvas canvas, Point position, Integer dimension) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(position.x, position.y, Constants.PLAYER_RADIUS, paint);
+        canvas.drawCircle(position.x, position.y, dimension, paint);
     }
 
-    private static void drawSquare(Canvas canvas, Point position) {
-        final Rect rectangle = new Rect(position.x, position.y, position.x + Constants.SQUARE_EDGE, position.y + Constants.SQUARE_EDGE);
+    private static void drawSquare(Canvas canvas, Point position, Integer dimension) {
+        final Rect rectangle = new Rect(position.x, position.y, position.x + dimension, position.y + dimension);
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         canvas.drawRect(rectangle, paint);
@@ -43,6 +43,6 @@ public class CanvasDrawer {
 
     @FunctionalInterface
     private interface Drawer {
-        void draw(Canvas canvas, Point position);
+        void draw(Canvas canvas, Point position, Integer dimension);
     }
 }

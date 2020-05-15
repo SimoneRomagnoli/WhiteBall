@@ -8,9 +8,9 @@ public class Constants {
 
     public static Context CURRENT_CONTEXT;
 
-    public static int GYROSCOPE_SENSITIVITY;
+    //public static double GYROSCOPE_SENSITIVITY;
 
-    public static float PLAYER_RADIUS = 40f;
-    public static final int SQUARE_EDGE = 100;
+    //public static float PLAYER_RADIUS = 40f;
+    //public static final int SQUARE_EDGE = 100;
 
 }

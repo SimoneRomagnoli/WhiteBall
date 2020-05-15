@@ -82,7 +82,7 @@ public class GameViewImpl extends SurfaceView implements GameView {
     private void render(Canvas canvas) {
         List<Entity> entities = this.controller.getEntities();
         for(Entity entity:entities) {
-            final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition());
+            final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition(), entity.getDimension());
             CanvasDrawer.drawCanvas(canvas, viewEntity);
         }
     }

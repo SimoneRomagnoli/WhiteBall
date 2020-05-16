@@ -8,7 +8,7 @@ public class Area {
     private Region region;
 
     public Area(Point point, int radius) {
-        this.region = new Region(point.x, point.y, point.x + radius, point.y + radius);
+        this.region = new Region(point.x - radius, point.y - radius, point.x + radius, point.y + radius);
     }
 
     public Region getRegion() {
@@ -16,6 +16,6 @@ public class Area {
     }
 
     public void setRegion(Point point, int radius) {
-        this.region = new Region(point.x, point.y, point.x + radius, point.y + radius);
+        this.region = new Region(point.x - radius, point.y - radius, point.x + radius, point.y + radius);
     }
 }

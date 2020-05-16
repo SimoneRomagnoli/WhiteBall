@@ -4,6 +4,7 @@ import android.graphics.Point;
 
 import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.Ball;
+import com.example.whiteball.model.entities.CollisionDetector;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.Square;
 import com.example.whiteball.model.entities.properties.Velocity;
@@ -17,14 +18,17 @@ public class ModelImpl implements Model {
     private final int Y_COORDINATE = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 10;
     private List<Entity> entities;
     private Ball player;
+    private CollisionDetector collisionDetector;
 
     public ModelImpl() {
         this.entities = new ArrayList<>();
+        this.collisionDetector = new CollisionDetector();
+
         this.player = new Ball(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE), Constants.PLAYER_RADIUS_INT);
         this.entities.add(this.player);
 
-        Square square = new Square(new Point(200, 0), Constants.SQUARE_EDGE);
-        square.setVelocity(new VelocityImpl(0, 4));
+        Square square = new Square(new Point(Constants.SCREEN_WIDTH / 2, 0), Constants.SQUARE_EDGE / 2);
+        square.setVelocity(new VelocityImpl(0, 6));
         this.entities.add(square);
     }
 
@@ -50,6 +54,7 @@ public class ModelImpl implements Model {
                 entity.setPosition(new Point(old.x + velocity.getX(), old.y + velocity.getY()));
             }
         }
+        this.collisionDetector.anyCollision(this.player, this.entities);
     }
 
     @Override

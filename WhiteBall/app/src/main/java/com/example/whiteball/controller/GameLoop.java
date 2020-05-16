@@ -1,62 +1,60 @@
 package com.example.whiteball.controller;
 
+import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
+import com.google.common.collect.ImmutableList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLoop extends Thread {
-    private static final int FPS = 30;
-    private static final double PERIOD = 1E+3 / FPS;
+    private static final int FPS = 60;
+    private final long frameRate;
 
     private GameView gameView;
-    private Controller controller;
-
+    private Model model;
     private double avgFPS = 0;
-    private boolean running;
+    private boolean isRunning;
+    private List<Command> commands;
 
-    public GameLoop(GameView gameView, Controller controller) {
+    public GameLoop(GameView gameView, Model model) {
         super();
-        this.running = false;
+        this.isRunning = false;
 
         this.gameView = gameView;
-        this.controller = controller;
+        this.model = model;
+        this.frameRate = (long) (1 / (this.FPS * 0.001));
+        this.commands = new ArrayList<>();
     }
 
     @Override
     public void run() {
         super.run();
-
-        long startTime;
-        long elapsedTime;
-        long sleepTime;
-        long totalTime = 0;
         int frameCount = 0;
-        long targetTime = 1000/FPS;
+        long lastTime = System.currentTimeMillis();
+        long startTime = lastTime;
+        while(this.isRunning) {
+            final long currentTime = System.currentTimeMillis();
 
-        startTime = System.currentTimeMillis();
-        while(running) {
-
-            //Heart of the game loop, updating and rendering
-            this.gameView.render();
-            this.controller.update();
+            //Heart of the game loop: taking input, updating and rendering
+            this.processInput();
+            final long elapsedTime = currentTime - lastTime;
+            this.update(elapsedTime);
+            this.render();
             frameCount++;
 
             //Pause game loop to reach the target FPS
-            elapsedTime = System.currentTimeMillis() - startTime;
-            sleepTime = (long)(frameCount*PERIOD - elapsedTime);
-            if(sleepTime > 0) {
-                try {
-                    this.sleep(sleepTime);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            this.waitForNextFrame(currentTime);
 
             //Calculate FPS
-            elapsedTime = System.currentTimeMillis() - startTime;
-            if(elapsedTime >= 1000) {
-                avgFPS =  frameCount / (1E-3 * elapsedTime);
+            long frameTime = System.currentTimeMillis() - startTime;
+            if(frameTime >= 1000) {
+                avgFPS =  frameCount / (1E-3 * frameTime);
                 frameCount = 0;
                 startTime = System.currentTimeMillis();
             }
+
+            lastTime = currentTime;
         }
     }
 
@@ -65,11 +63,39 @@ public class GameLoop extends Thread {
     }
 
     public void startGameLoop() {
-        running = true;
-        start();
+        this.isRunning = true;
+        this.start();
     }
 
     public void stopGameLoop() {
-        running = false;
+        this.isRunning = false;
+    }
+
+    public void addInput(Command command) {
+        this.commands.add(command);
+    }
+
+    private void processInput() {
+        this.model.resolveInputs(ImmutableList.copyOf(this.commands));
+        this.commands = new ArrayList<>();
+    }
+
+    private void render() {
+        this.gameView.render();
+    }
+
+    private void update(final long elapsedTime) {
+        this.model.update(elapsedTime);
+    }
+
+    private void waitForNextFrame(final long currentTime) {
+        final long dt = System.currentTimeMillis() - currentTime;
+        if (dt < this.frameRate) {
+            try {
+                Thread.sleep(this.frameRate - dt);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

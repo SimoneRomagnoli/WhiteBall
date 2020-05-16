@@ -1,14 +1,9 @@
 package com.example.whiteball.model.entities;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
 
-import com.example.whiteball.Constants;
-
 public class Ball extends EntityImpl implements Entity {
-
+    private static final Integer RADIUS = 40;
 
     public Ball(Point position, int radius) {
         super(position, radius);
@@ -16,7 +11,7 @@ public class Ball extends EntityImpl implements Entity {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public Integer getDimension() {
+        return this.RADIUS;
     }
-
 }

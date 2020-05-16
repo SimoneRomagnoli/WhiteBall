@@ -4,10 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -51,7 +47,8 @@ public class GameViewImpl extends SurfaceView implements GameView {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         this.render(canvas);
-        //this.printFPS(canvas);
+        this.printFPS(canvas);
+        this.printCollisions(canvas);
     }
 
     @Override
@@ -86,8 +83,16 @@ public class GameViewImpl extends SurfaceView implements GameView {
     private void render(Canvas canvas) {
         List<Entity> entities = this.controller.getEntities();
         for(Entity entity:entities) {
-            final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition());
+            final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition(), entity.getDimension());
             CanvasDrawer.drawCanvas(canvas, viewEntity);
         }
+    }
+
+    private void printCollisions(Canvas canvas) {
+        String str = Integer.toString(this.controller.getCollisions());
+        Paint paint = new Paint();
+        paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
+        paint.setTextSize(20);
+        canvas.drawText("Collisions: "+str, 10, 60, paint);
     }
 }

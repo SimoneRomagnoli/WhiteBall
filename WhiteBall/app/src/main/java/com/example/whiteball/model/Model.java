@@ -1,5 +1,6 @@
 package com.example.whiteball.model;
 
+import com.example.whiteball.controller.Command;
 import com.example.whiteball.model.entities.Entity;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface Model {
     /**
      * Update the model.
      */
-    void update();
+    void update(long dt);
 
     /**
      *
@@ -25,5 +26,11 @@ public interface Model {
 
     Entity getPlayer();
 
-    void executeInput(float input);
+    /**
+     * Resolves the inputs.
+     * @param inputs
+     */
+    void resolveInputs(List<Command> inputs);
+
+    int getCollisions();
 }

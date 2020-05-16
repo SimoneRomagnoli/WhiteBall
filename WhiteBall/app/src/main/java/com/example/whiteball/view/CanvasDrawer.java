@@ -6,10 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-import com.example.whiteball.Constants;
-import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.EntityType;
-import com.example.whiteball.model.entities.Square;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;

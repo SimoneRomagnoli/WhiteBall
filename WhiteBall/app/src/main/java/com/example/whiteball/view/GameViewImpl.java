@@ -6,6 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.core.content.ContextCompat;
 
@@ -42,12 +46,13 @@ public class GameViewImpl extends SurfaceView implements GameView {
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {}
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "ResourceType"})
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         this.render(canvas);
         this.printFPS(canvas);
+        this.printElapsedTime(canvas);
     }
 
     @Override
@@ -77,6 +82,24 @@ public class GameViewImpl extends SurfaceView implements GameView {
         paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
         paint.setTextSize(20);
         canvas.drawText("FPS: "+str, 10, 20, paint);
+    }
+
+    private void printElapsedTime(Canvas canvas) {
+        long elapsed = this.controller.getElapsedTime();
+        int mins = (int)(elapsed / Constants.MINUTE_LONG);
+        int secs = (int)(elapsed / Constants.SECOND_LONG);
+
+        String m = Integer.toString(mins);
+        String s = Integer.toString(secs);
+
+        Paint paint = new Paint();
+        paint.setColor(ContextCompat.getColor(this.context, R.color.white));
+        paint.setTextSize(50);
+
+        String roundS = secs < 10 ? "0" : "";
+        String roundM = mins < 10 ? "0" : "";
+
+        canvas.drawText(roundM + m + ":" + roundS + s, 10, 100, paint);
     }
 
     private void render(Canvas canvas) {

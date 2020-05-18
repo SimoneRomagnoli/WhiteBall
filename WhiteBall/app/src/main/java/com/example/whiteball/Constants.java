@@ -15,4 +15,7 @@ public class Constants {
     public static int PLAYER_RADIUS_INT = 40;
     public static int SQUARE_EDGE = 100;
 
+    public static int MINUTE_LONG = 60000;
+    public static int SECOND_LONG = 1000;
+
 }

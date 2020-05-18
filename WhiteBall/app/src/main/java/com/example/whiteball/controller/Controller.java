@@ -29,4 +29,7 @@ public interface Controller {
      */
     List<Entity> getEntities();
 
+    void pauseLoop();
+
+    long getElapsedTime();
 }

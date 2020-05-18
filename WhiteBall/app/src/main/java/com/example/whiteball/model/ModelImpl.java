@@ -7,7 +7,6 @@ import com.example.whiteball.controller.Command;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.model.entities.EntityFactoryImpl;
-import com.example.whiteball.model.entities.EntityType;
 import com.example.whiteball.model.entities.Square;
 import com.example.whiteball.model.entities.components.CollisionComponent;
 import com.example.whiteball.model.entities.properties.VelocityImpl;
@@ -24,8 +23,10 @@ public class ModelImpl implements Model {
 
     private List<Entity> entities;
     private Ball player;
+    private long time;
 
     public ModelImpl() {
+        this.time = 0;
         this.entities = new ArrayList<>();
         this.player = (Ball)EntityFactoryImpl.createBall(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE));
         this.player.declarePlayer();
@@ -48,6 +49,8 @@ public class ModelImpl implements Model {
 
     @Override
     public void update(final long dt) {
+        this.time += dt;
+
         for (Entity entity: this.entities) {
             if (entity.isPlayer()) {
                 for(Component component: entity.getComponents()) {
@@ -80,5 +83,10 @@ public class ModelImpl implements Model {
                 }
             }
         }
+    }
+
+    @Override
+    public long getElapsedTime() {
+        return this.time;
     }
 }

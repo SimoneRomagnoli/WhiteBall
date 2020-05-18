@@ -32,4 +32,6 @@ public interface Model {
      */
     void resolveInputs(List<Command> inputs);
 
+    long getElapsedTime();
+
 }

@@ -43,11 +43,6 @@ public class ControllerImpl implements Controller, InputObserver {
     }
 
     @Override
-    public int getCollisions() {
-        return this.model.getCollisions();
-    }
-
-    @Override
     public void updateObserver(Command command) {
         this.gameLoop.addInput(command);
     }

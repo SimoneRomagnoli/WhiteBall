@@ -32,5 +32,4 @@ public interface Model {
      */
     void resolveInputs(List<Command> inputs);
 
-    int getCollisions();
 }

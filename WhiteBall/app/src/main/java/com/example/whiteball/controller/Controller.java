@@ -28,6 +28,4 @@ public interface Controller {
      * @return a list of {@link Entity} active in the game.
      */
     List<Entity> getEntities();
-
-    int getCollisions();
 }

@@ -48,7 +48,6 @@ public class GameViewImpl extends SurfaceView implements GameView {
         super.draw(canvas);
         this.render(canvas);
         this.printFPS(canvas);
-        this.printCollisions(canvas);
     }
 
     @Override
@@ -86,13 +85,5 @@ public class GameViewImpl extends SurfaceView implements GameView {
             final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition(), entity.getDimension());
             CanvasDrawer.drawCanvas(canvas, viewEntity);
         }
-    }
-
-    private void printCollisions(Canvas canvas) {
-        String str = Integer.toString(this.controller.getCollisions());
-        Paint paint = new Paint();
-        paint.setColor(ContextCompat.getColor(this.context, R.color.magenta));
-        paint.setTextSize(20);
-        canvas.drawText("Collisions: "+str, 10, 60, paint);
     }
 }

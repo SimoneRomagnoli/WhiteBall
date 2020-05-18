@@ -31,15 +31,15 @@ public class ModelImpl implements Model {
         this.player = new Ball(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE), Constants.PLAYER_RADIUS_INT);
         this.entities.add(this.player);
 
-        Square square = new Square(new Point(Constants.SCREEN_WIDTH / 2, 0), Constants.SQUARE_EDGE);
+        Square square = new Square(new Point(Constants.SCREEN_WIDTH / 2, 0), Constants.SQUARE_EDGE / 2);
         square.setVelocity(new VelocityImpl(0, 1));
         this.entities.add(square);
 
-        Square square2 = new Square(new Point(Constants.SCREEN_WIDTH / 2, 200), Constants.SQUARE_EDGE);
+        Square square2 = new Square(new Point(Constants.SCREEN_WIDTH / 2, 200), Constants.SQUARE_EDGE / 2);
         square2.setVelocity(new VelocityImpl(0, 1));
         this.entities.add(square2);
 
-        Square square3 = new Square(new Point(Constants.SCREEN_WIDTH / 2, 400), Constants.SQUARE_EDGE);
+        Square square3 = new Square(new Point(Constants.SCREEN_WIDTH / 2, 400), Constants.SQUARE_EDGE / 2);
         square3.setVelocity(new VelocityImpl(0, 1));
         this.entities.add(square3);
 

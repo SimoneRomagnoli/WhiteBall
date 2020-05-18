@@ -1,5 +1,6 @@
 package com.example.whiteball.model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CollisionDetector {

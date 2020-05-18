@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.example.whiteball.Constants;
@@ -30,19 +32,16 @@ public class GameViewImpl extends SurfaceView implements GameView {
     private Controller controller;
     private View pause;
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     public GameViewImpl(Context context) {
         super(context);
         this.context = context;
-
         Constants.CURRENT_CONTEXT = context;
 
         LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         pause = li.inflate(R.layout.pause, null);
         pause.measure(MeasureSpec.getSize(pause.getMeasuredWidth()), MeasureSpec.getSize(pause.getMeasuredHeight()));
         pause.layout(0, 0, 0, 0);
-        pause.setOnClickListener(v -> {
-            controller.pauseLoop();
-        });
 
         getHolder().addCallback(this);
         setFocusable(true);

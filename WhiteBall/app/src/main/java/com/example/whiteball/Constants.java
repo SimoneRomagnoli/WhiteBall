@@ -13,6 +13,6 @@ public class Constants {
     public static double VELOCITY_FACTOR = 0.7;
     public static float PLAYER_RADIUS_FLOAT = 40f;
     public static int PLAYER_RADIUS_INT = 40;
-    public static final int SQUARE_EDGE = 100;
+    public static int SQUARE_EDGE = 100;
 
 }

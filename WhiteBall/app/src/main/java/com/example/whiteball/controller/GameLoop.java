@@ -1,5 +1,8 @@
 package com.example.whiteball.controller;
 
+import android.widget.Toast;
+
+import com.example.whiteball.Constants;
 import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
 import com.google.common.collect.ImmutableList;
@@ -15,11 +18,13 @@ public class GameLoop extends Thread {
     private Model model;
     private double avgFPS = 0;
     private boolean isRunning;
+    private boolean paused;
     private List<Command> commands;
 
     public GameLoop(GameView gameView, Model model) {
         super();
         this.isRunning = false;
+        this.paused = false;
 
         this.gameView = gameView;
         this.model = model;
@@ -36,11 +41,19 @@ public class GameLoop extends Thread {
         while(this.isRunning) {
             final long currentTime = System.currentTimeMillis();
 
+            if(this.model.isGameOver()) {
+                this.paused = true;
+            }
+
             //Heart of the game loop: taking input, updating and rendering
             this.processInput();
             final long elapsedTime = currentTime - lastTime;
-            this.update(elapsedTime);
-            this.render();
+
+            if(!this.paused) {
+                this.update(elapsedTime);
+                this.render();
+            }
+
             frameCount++;
 
             //Pause game loop to reach the target FPS
@@ -74,6 +87,12 @@ public class GameLoop extends Thread {
     public void addInput(Command command) {
         this.commands.add(command);
     }
+
+    public boolean isPaused() { return this.paused; };
+
+    public void pauseLoop() { this.paused = true; }
+
+    public void resumeLoop() { this.paused = false; }
 
     private void processInput() {
         this.model.resolveInputs(ImmutableList.copyOf(this.commands));

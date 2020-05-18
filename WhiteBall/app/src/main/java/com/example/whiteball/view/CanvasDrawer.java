@@ -33,7 +33,7 @@ public class CanvasDrawer {
     }
 
     private static void drawSquare(Canvas canvas, Point position, Integer dimension) {
-        final Rect rectangle = new Rect(position.x, position.y, position.x + dimension, position.y + dimension);
+        final Rect rectangle = new Rect(position.x - dimension / 2, position.y - dimension / 2, position.x + dimension / 2, position.y + dimension / 2);
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         canvas.drawRect(rectangle, paint);

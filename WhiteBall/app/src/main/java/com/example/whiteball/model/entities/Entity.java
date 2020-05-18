@@ -3,6 +3,7 @@ package com.example.whiteball.model.entities;
 import android.graphics.Point;
 
 
+import com.example.whiteball.model.entities.components.ComponentType;
 import com.example.whiteball.model.entities.properties.Area;
 import com.example.whiteball.model.entities.properties.Velocity;
 
@@ -33,4 +34,8 @@ public interface Entity {
     void addComponent(Component component);
 
     List<Component> getComponents();
+
+    boolean isPlayer();
+
+    void declarePlayer();
 }

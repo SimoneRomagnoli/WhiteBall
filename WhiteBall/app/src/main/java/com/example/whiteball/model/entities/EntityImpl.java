@@ -2,6 +2,7 @@ package com.example.whiteball.model.entities;
 
 import android.graphics.Point;
 
+import com.example.whiteball.model.entities.components.ComponentType;
 import com.example.whiteball.model.entities.properties.Area;
 import com.example.whiteball.model.entities.properties.Velocity;
 import com.example.whiteball.model.entities.properties.VelocityImpl;
@@ -18,6 +19,7 @@ public abstract class EntityImpl implements Entity {
     protected Area area;
     protected int radius;
     private final List<Component> components;
+    private boolean isPlayer = false;
 
     public EntityImpl(Point position, int radius) {
         this.position = position;
@@ -72,5 +74,15 @@ public abstract class EntityImpl implements Entity {
     @Override
     public List<Component> getComponents() {
         return this.components;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.isPlayer;
+    }
+
+    @Override
+    public void declarePlayer() {
+        this.isPlayer = true;
     }
 }

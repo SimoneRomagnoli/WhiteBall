@@ -46,4 +46,6 @@ public class ControllerImpl implements Controller, InputObserver {
     public void updateObserver(Command command) {
         this.gameLoop.addInput(command);
     }
+
+
 }

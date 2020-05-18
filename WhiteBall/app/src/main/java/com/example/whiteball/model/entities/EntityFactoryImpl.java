@@ -3,6 +3,7 @@ package com.example.whiteball.model.entities;
 import android.graphics.Point;
 
 import com.example.whiteball.Constants;
+import com.example.whiteball.model.entities.components.CollisionComponent;
 import com.example.whiteball.model.entities.components.InputComponent;
 import com.example.whiteball.model.entities.components.MovementComponent;
 import com.example.whiteball.model.entities.components.ToroidalComponent;
@@ -42,6 +43,7 @@ public class EntityFactoryImpl implements EntityFactory {
         entity.addComponent(new InputComponent());
         entity.addComponent(new MovementComponent());
         entity.addComponent(new ToroidalComponent());
+        entity.addComponent(new CollisionComponent());
         return entity;
     }
 
@@ -51,7 +53,7 @@ public class EntityFactoryImpl implements EntityFactory {
      * @return a new {@link Square}.
      */
     public static Entity createSquare(Point position) {
-        final Entity entity = new Square(position, Constants.SQUARE_EDGE);
+        final Entity entity = new Square(position, Constants.SQUARE_EDGE / 2);
         entity.addComponent(new MovementComponent());
         return entity;
     }

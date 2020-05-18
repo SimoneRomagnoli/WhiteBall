@@ -2,8 +2,12 @@ package com.example.whiteball.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -24,6 +28,7 @@ public class GameViewImpl extends SurfaceView implements GameView {
 
     private Context context;
     private Controller controller;
+    private View pause;
 
     public GameViewImpl(Context context) {
         super(context);
@@ -31,13 +36,23 @@ public class GameViewImpl extends SurfaceView implements GameView {
 
         Constants.CURRENT_CONTEXT = context;
 
+        LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        pause = li.inflate(R.layout.pause, null);
+        pause.measure(MeasureSpec.getSize(pause.getMeasuredWidth()), MeasureSpec.getSize(pause.getMeasuredHeight()));
+        pause.layout(0, 0, 0, 0);
+        pause.setOnClickListener(v -> {
+            controller.pauseLoop();
+        });
+
         getHolder().addCallback(this);
         setFocusable(true);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         this.controller.startGameLoop();
+
     }
 
     @Override
@@ -51,8 +66,9 @@ public class GameViewImpl extends SurfaceView implements GameView {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         this.render(canvas);
-        this.printFPS(canvas);
+        //this.printFPS(canvas);
         this.printElapsedTime(canvas);
+        pause.draw(canvas);
     }
 
     @Override
@@ -94,12 +110,12 @@ public class GameViewImpl extends SurfaceView implements GameView {
 
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(this.context, R.color.white));
-        paint.setTextSize(50);
+        paint.setTextSize(100);
 
         String roundS = secs < 10 ? "0" : "";
         String roundM = mins < 10 ? "0" : "";
 
-        canvas.drawText(roundM + m + ":" + roundS + s, 10, 100, paint);
+        canvas.drawText(roundM + m + ":" + roundS + s, Constants.SCREEN_WIDTH - (int)(Constants.SCREEN_WIDTH / 4.2), 85, paint);
     }
 
     private void render(Canvas canvas) {
@@ -109,4 +125,5 @@ public class GameViewImpl extends SurfaceView implements GameView {
             CanvasDrawer.drawCanvas(canvas, viewEntity);
         }
     }
+
 }

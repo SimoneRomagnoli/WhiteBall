@@ -7,12 +7,9 @@ import android.view.SurfaceHolder;
 
 import com.example.whiteball.controller.Controller;
 
-public interface GameView extends SurfaceHolder.Callback {
+public interface GameView {
 
     void launch(Controller controller);
 
     void render();
-
-    SurfaceHolder getSurfaceHolder();
-
 }

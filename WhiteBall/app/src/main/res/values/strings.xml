@@ -2,4 +2,6 @@
     <string name="app_name">WhiteBall</string>
     <string name="ball">ball</string>
     <string name="square">square</string>
+    <string name="start">Start</string>
+    <string name="whiteball">WhiteBall</string>
 </resources>

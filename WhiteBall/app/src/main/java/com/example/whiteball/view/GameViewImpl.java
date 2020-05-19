@@ -1,22 +1,15 @@
 package com.example.whiteball.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.view.LayoutInflater;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.example.whiteball.Constants;
@@ -26,13 +19,16 @@ import com.example.whiteball.model.entities.Entity;
 
 import java.util.List;
 
-public class GameViewImpl extends SurfaceView implements GameView {
+public class GameViewImpl extends View implements GameView {
 
     private Context context;
     private Controller controller;
+    private Canvas canvas;
     private View pause;
+    private Button b;
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private int count = 0;
+
     public GameViewImpl(Context context) {
         super(context);
         this.context = context;
@@ -43,52 +39,39 @@ public class GameViewImpl extends SurfaceView implements GameView {
         pause.measure(MeasureSpec.getSize(pause.getMeasuredWidth()), MeasureSpec.getSize(pause.getMeasuredHeight()));
         pause.layout(0, 0, 0, 0);
 
-        getHolder().addCallback(this);
-        setFocusable(true);
+        this.canvas = new Canvas();
+        this.setBackgroundColor(Color.BLACK);
+
+        b = pause.findViewById(R.id.pause_button);
+        b.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Constants.CURRENT_CONTEXT, "botton cliccato", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
-    @SuppressLint("ResourceType")
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        this.controller.startGameLoop();
-
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {}
-
-    @SuppressLint({"ResourceAsColor", "ResourceType"})
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        canvas.drawColor(Color.BLACK);
         this.render(canvas);
-        //this.printFPS(canvas);
+        this.printFPS(canvas);
         this.printElapsedTime(canvas);
-        pause.draw(canvas);
+        //pause.draw(canvas);
     }
 
     @Override
     public void render() {
-        try {
-            Canvas canvas = this.getSurfaceHolder().lockCanvas();
-            synchronized (this.getSurfaceHolder()) {
-                this.draw(canvas);
-            }
-            this.getSurfaceHolder().unlockCanvasAndPost(canvas);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
+        this.draw(this.canvas);
     }
 
     public void launch(Controller controller) {
         this.controller = controller;
-    }
 
-    public SurfaceHolder getSurfaceHolder() {
-        return getHolder();
+        this.controller.startGameLoop();
     }
 
     private void printFPS(Canvas canvas) {

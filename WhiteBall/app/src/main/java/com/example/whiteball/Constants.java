@@ -10,7 +10,7 @@ public class Constants {
 
     //public static double GYROSCOPE_SENSITIVITY;
 
-    public static double VELOCITY_FACTOR = 0.5;
+    public static double VELOCITY_FACTOR = 0.4;
     public static float PLAYER_RADIUS_FLOAT = 40f;
     public static int PLAYER_RADIUS_INT = 40;
     public static int SQUARE_EDGE = 100;

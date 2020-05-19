@@ -3,6 +3,9 @@ package com.example.whiteball;
 import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -28,15 +31,16 @@ import com.example.whiteball.model.ModelImpl;
 import com.example.whiteball.view.GameView;
 import com.example.whiteball.view.GameViewImpl;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     private Controller controller;
-    private Button b;
+    private FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*
         Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -46,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         display.getSize(outSize);
         Constants.SCREEN_WIDTH = outSize.x;
         Constants.SCREEN_HEIGHT = outSize.y;
-
-
+        */
+        /*
         final Model model = new ModelImpl();
         final GameView gameView = new GameViewImpl(this);
         this.controller = new ControllerImpl(model, gameView);
@@ -55,14 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView((View) gameView);
+        */
 
-        /*
+        Constants.CURRENT_CONTEXT = this;
+
         setContentView(R.layout.activity_main);
+        this.manager = getSupportFragmentManager();
+        FragmentTransaction transaction = this.manager.beginTransaction();
+        MenuFragment menuFragment = new MenuFragment(this.manager);
+        transaction.add(R.id.fragment_container, menuFragment);
+        transaction.commit();
 
-        b = findViewById(R.id.start_button);
-        b.setOnClickListener(v -> {
-            Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
-        });*/
     }
 
     @Override

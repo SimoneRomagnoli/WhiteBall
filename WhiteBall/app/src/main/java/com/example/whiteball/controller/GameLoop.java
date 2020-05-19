@@ -51,7 +51,7 @@ public class GameLoop extends Thread {
 
             if(!this.paused) {
                 this.update(elapsedTime);
-                this.render();
+                //la render viene fatta automaticamente dalla view
             }
 
             frameCount++;
@@ -97,10 +97,6 @@ public class GameLoop extends Thread {
     private void processInput() {
         this.model.resolveInputs(ImmutableList.copyOf(this.commands));
         this.commands = new ArrayList<>();
-    }
-
-    private void render() {
-        this.gameView.render();
     }
 
     private void update(final long elapsedTime) {

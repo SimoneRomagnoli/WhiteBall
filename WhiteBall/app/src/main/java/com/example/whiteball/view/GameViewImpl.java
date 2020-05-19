@@ -55,22 +55,15 @@ public class GameViewImpl extends View implements GameView {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawColor(Color.BLACK);
         this.render(canvas);
-        this.printFPS(canvas);
         this.printElapsedTime(canvas);
-        //pause.draw(canvas);
-    }
-
-    @Override
-    public void render() {
-        
-        this.draw(this.canvas);
+        pause.draw(canvas);
+        //this.printFPS(canvas);
+        invalidate();
     }
 
     public void launch(Controller controller) {
         this.controller = controller;
-
         this.controller.startGameLoop();
     }
 

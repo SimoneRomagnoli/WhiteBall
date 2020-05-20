@@ -44,13 +44,13 @@ public class MainActivity extends FragmentActivity {
         Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        */
         Display display = getWindowManager().getDefaultDisplay();
         Point outSize = new Point();
         display.getSize(outSize);
         Constants.SCREEN_WIDTH = outSize.x;
         Constants.SCREEN_HEIGHT = outSize.y;
-        */
+
         /*
         final Model model = new ModelImpl();
         final GameView gameView = new GameViewImpl(this);

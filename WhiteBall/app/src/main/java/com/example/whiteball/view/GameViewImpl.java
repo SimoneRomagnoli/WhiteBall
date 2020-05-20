@@ -27,12 +27,9 @@ public class GameViewImpl extends View implements GameView {
     private View pause;
     private Button b;
 
-    private int count = 0;
-
     public GameViewImpl(Context context) {
         super(context);
         this.context = context;
-        Constants.CURRENT_CONTEXT = context;
 
         LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         pause = li.inflate(R.layout.pause, null);

@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameFragment">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:fontFamily="cursive"
-        android:text="@string/whiteball"
-        android:textAlignment="center"
-        android:textColor="#FF09FF"
-        android:textSize="80sp" />
-
-</FrameLayout>
+    android:background="#000000"
+    tools:context=".GameFragment" />

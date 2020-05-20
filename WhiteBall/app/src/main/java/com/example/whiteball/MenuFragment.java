@@ -31,7 +31,6 @@ public class MenuFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_menu, container, false);
         this.startButton = root.findViewById(R.id.start_button);
         this.startButton.setOnClickListener(v -> {
-            Toast.makeText(Constants.CURRENT_CONTEXT, "START", Toast.LENGTH_SHORT).show();
 
             FragmentTransaction t = this.manager.beginTransaction();
             GameFragment gameFragment = new GameFragment();

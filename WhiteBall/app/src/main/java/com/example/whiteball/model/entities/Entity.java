@@ -3,9 +3,8 @@ package com.example.whiteball.model.entities;
 import android.graphics.Point;
 
 
-import com.example.whiteball.model.entities.components.ComponentType;
 import com.example.whiteball.model.entities.properties.Area;
-import com.example.whiteball.model.entities.properties.Velocity;
+import com.example.whiteball.model.entities.properties.Vector2D;
 
 import com.example.whiteball.model.entities.components.Component;
 
@@ -19,9 +18,9 @@ public interface Entity {
 
     EntityType getType();
 
-    Velocity getVelocity();
+    Vector2D getVelocity();
 
-    void setVelocity(Velocity velocity);
+    void setVelocity(Vector2D velocity);
 
     int getRadius();
 

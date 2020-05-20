@@ -2,8 +2,8 @@ package com.example.whiteball.model.entities.components;
 
 import com.example.whiteball.controller.Command;
 import com.example.whiteball.controller.InputManager;
-import com.example.whiteball.model.entities.properties.Velocity;
-import com.example.whiteball.model.entities.properties.VelocityImpl;
+import com.example.whiteball.model.entities.properties.Vector2D;
+import com.example.whiteball.model.entities.properties.Vector2DImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class InputComponent extends AbstractComponent {
     @Override
     public void update(long dt) {
         if (this.isEnabled()) {
-            final Velocity velocity = new VelocityImpl(0, 0);
+            final Vector2D velocity = new Vector2DImpl(0, 0);
             for (Command command: inputs) {
                 velocity.setX((int)(velocity.getX() + InputManager.GYROSCOPE_SENSITIVITY * (-(int)command.getValue())));
             }

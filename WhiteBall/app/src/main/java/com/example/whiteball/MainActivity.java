@@ -41,6 +41,10 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         /*
+=======
+        System.out.println("CREATE");
+
+>>>>>>> factory
         Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -76,5 +80,10 @@ public class MainActivity extends FragmentActivity {
     protected void onPause() {
         super.onPause();
         this.controller.stopGameLoop();
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //this.controller.startGameLoop();
     }
 }

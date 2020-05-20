@@ -14,6 +14,8 @@ public class Constants {
     public static float PLAYER_RADIUS_FLOAT = 40f;
     public static int PLAYER_RADIUS_INT = 40;
     public static int SQUARE_EDGE = 100;
+    public static int TRIANGLE_EDGE = 100;
+    public static int RHOMBUS_EDGE = 50;
 
     public static int MINUTE_LONG = 60000;
     public static int SECOND_LONG = 1000;

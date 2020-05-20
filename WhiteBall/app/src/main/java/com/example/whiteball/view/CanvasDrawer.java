@@ -3,6 +3,7 @@ package com.example.whiteball.view;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -18,7 +19,9 @@ public class CanvasDrawer {
     static {
         DRAWER_MAP = ImmutableMap.of(
                 EntityType.BALL, CanvasDrawer::drawBall,
-                EntityType.SQUARE, CanvasDrawer::drawSquare
+                EntityType.SQUARE, CanvasDrawer::drawSquare,
+                EntityType.TRIANGLE, CanvasDrawer::drawTriangle,
+                EntityType.RHOMBUS, CanvasDrawer::drawRhombus
         );
     }
 
@@ -37,6 +40,37 @@ public class CanvasDrawer {
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         canvas.drawRect(rectangle, paint);
+    }
+
+    private static void drawTriangle(Canvas canvas, Point position, Integer dimension) {
+        int halfWidth = dimension / 2;
+        Paint paint = new Paint();
+        paint.setColor(Color.GREEN);
+
+        Path path = new Path();
+        path.moveTo(position.x, position.y - halfWidth); // Top
+        path.lineTo(position.x - halfWidth, position.y + halfWidth); // Bottom left
+        path.lineTo(position.x + halfWidth, position.y + halfWidth); // Bottom right
+        path.lineTo(position.x, position.y - halfWidth); // Back to Top
+        path.close();
+
+        canvas.drawPath(path, paint);
+    }
+
+    private static void drawRhombus(Canvas canvas, Point position, Integer dimension) {
+        int halfWidth = dimension / 2;
+        Paint paint = new Paint();
+        paint.setColor(Color.YELLOW);
+
+        Path path = new Path();
+        path.moveTo(position.x, position.y + halfWidth); // Top
+        path.lineTo(position.x - halfWidth, position.y); // Left
+        path.lineTo(position.x, position.y - halfWidth); // Bottom
+        path.lineTo(position.x + halfWidth, position.y); // Right
+        path.lineTo(position.x, position.y + halfWidth); // Back to Top
+        path.close();
+
+        //canvas.drawPath(path, paint);
     }
 
     @FunctionalInterface

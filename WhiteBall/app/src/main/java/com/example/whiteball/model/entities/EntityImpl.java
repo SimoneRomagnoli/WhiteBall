@@ -2,10 +2,9 @@ package com.example.whiteball.model.entities;
 
 import android.graphics.Point;
 
-import com.example.whiteball.model.entities.components.ComponentType;
 import com.example.whiteball.model.entities.properties.Area;
-import com.example.whiteball.model.entities.properties.Velocity;
-import com.example.whiteball.model.entities.properties.VelocityImpl;
+import com.example.whiteball.model.entities.properties.Vector2D;
+import com.example.whiteball.model.entities.properties.Vector2DImpl;
 import com.example.whiteball.model.entities.components.Component;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
 public abstract class EntityImpl implements Entity {
 
     protected Point position;
-    protected Velocity velocity;
+    protected Vector2D velocity;
     protected EntityType type;
     protected Area area;
     protected int radius;
@@ -25,7 +24,7 @@ public abstract class EntityImpl implements Entity {
         this.position = position;
         this.radius = radius;
         this.area = new Area(this.position, this.radius);
-        this.velocity = new VelocityImpl(0, 0);
+        this.velocity = new Vector2DImpl(0, 0);
         this.components = new ArrayList<>();
     }
 
@@ -46,10 +45,10 @@ public abstract class EntityImpl implements Entity {
     }
 
     @Override
-    public Velocity getVelocity() { return this.velocity; }
+    public Vector2D getVelocity() { return this.velocity; }
 
     @Override
-    public void setVelocity(Velocity velocity) { this.velocity = velocity; }
+    public void setVelocity(Vector2D velocity) { this.velocity = velocity; }
 
     @Override
     public int getRadius() { return this.radius; }

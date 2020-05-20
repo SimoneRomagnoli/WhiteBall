@@ -4,6 +4,7 @@ import android.graphics.Point;
 
 import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.components.CollisionComponent;
+import com.example.whiteball.model.entities.components.GravityComponent;
 import com.example.whiteball.model.entities.components.InputComponent;
 import com.example.whiteball.model.entities.components.MovementComponent;
 import com.example.whiteball.model.entities.components.ToroidalComponent;
@@ -24,7 +25,9 @@ public class EntityFactoryImpl implements EntityFactory {
     static {
         ENTITY_MAP = ImmutableMap.of(
                 EntityType.BALL, EntityFactoryImpl::createBall,
-                EntityType.SQUARE, EntityFactoryImpl::createSquare
+                EntityType.SQUARE, EntityFactoryImpl::createSquare,
+                EntityType.TRIANGLE, EntityFactoryImpl::createTriangle,
+                EntityType.RHOMBUS, EntityFactoryImpl::createRhombus
         );
     }
 
@@ -55,6 +58,30 @@ public class EntityFactoryImpl implements EntityFactory {
     public static Entity createSquare(Point position) {
         final Entity entity = new Square(position, Constants.SQUARE_EDGE / 2);
         entity.addComponent(new MovementComponent());
+        return entity;
+    }
+
+    /**
+     * Creates a new {@link Triangle} instance.
+     * @param position
+     * @return a new {@link Triangle}.
+     */
+    public static Entity createTriangle(Point position) {
+        final Entity entity = new Triangle(position, Constants.TRIANGLE_EDGE / 2);
+        entity.addComponent(new MovementComponent());
+        entity.addComponent(new GravityComponent());
+        return entity;
+    }
+
+    /**
+     * Creates a new {@link Rhombus} instance.
+     * @param position
+     * @return a new {@link Rhombus}.
+     */
+    public static Entity createRhombus(Point position) {
+        final Entity entity = new Rhombus(position, Constants.RHOMBUS_EDGE / 2);
+        entity.addComponent(new MovementComponent());
+        entity.addComponent(new GravityComponent());
         return entity;
     }
 

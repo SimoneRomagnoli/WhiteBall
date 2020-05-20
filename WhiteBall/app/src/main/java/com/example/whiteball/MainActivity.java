@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println("CREATE");
+
         Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -54,5 +56,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         this.controller.stopGameLoop();
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        this.controller.startGameLoop();
     }
 }

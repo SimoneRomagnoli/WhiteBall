@@ -36,13 +36,13 @@ public class GameViewImpl extends SurfaceView implements GameView {
 
         Constants.CURRENT_CONTEXT = context;
 
-        LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        /*LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         pause = li.inflate(R.layout.pause, null);
         pause.measure(MeasureSpec.getSize(pause.getMeasuredWidth()), MeasureSpec.getSize(pause.getMeasuredHeight()));
         pause.layout(0, 0, 0, 0);
         pause.setOnClickListener(v -> {
             controller.pauseLoop();
-        });
+        });*/
 
         getHolder().addCallback(this);
         setFocusable(true);
@@ -51,7 +51,7 @@ public class GameViewImpl extends SurfaceView implements GameView {
     @SuppressLint("ResourceType")
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        this.controller.startGameLoop();
+        //this.controller.startGameLoop();
 
     }
 
@@ -68,7 +68,7 @@ public class GameViewImpl extends SurfaceView implements GameView {
         this.render(canvas);
         //this.printFPS(canvas);
         this.printElapsedTime(canvas);
-        pause.draw(canvas);
+        //pause.draw(canvas);
     }
 
     @Override

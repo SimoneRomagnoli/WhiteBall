@@ -3,7 +3,6 @@ package com.example.whiteball;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -34,7 +33,6 @@ public class GameFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

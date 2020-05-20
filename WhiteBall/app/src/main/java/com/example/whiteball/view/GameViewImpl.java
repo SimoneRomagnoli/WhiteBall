@@ -54,19 +54,19 @@ public class GameViewImpl extends View implements GameView {
     private void printElapsedTime(Canvas canvas) {
         long elapsed = this.controller.getElapsedTime();
         int mins = (int)(elapsed / Constants.MINUTE_LONG);
-        int secs = (int)(elapsed / Constants.SECOND_LONG);
+        int secs = (int)(elapsed / Constants.SECOND_LONG)%60;
 
         String m = Integer.toString(mins);
         String s = Integer.toString(secs);
 
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(this.context, R.color.white));
-        paint.setTextSize(100);
+        paint.setTextSize(Constants.SCREEN_WIDTH/10);
 
         String roundS = secs < 10 ? "0" : "";
         String roundM = mins < 10 ? "0" : "";
 
-        canvas.drawText(roundM + m + ":" + roundS + s, Constants.SCREEN_WIDTH - (int)(Constants.SCREEN_WIDTH / 4.2), 85, paint);
+        canvas.drawText(roundM + m + ":" + roundS + s, Constants.SCREEN_WIDTH - (int)(Constants.SCREEN_WIDTH / 4), Constants.SCREEN_WIDTH/13, paint);
     }
 
     private void render(Canvas canvas) {

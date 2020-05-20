@@ -42,9 +42,15 @@ public class ControllerImpl implements Controller, InputObserver {
     }
 
     @Override
-    public void pauseLoop() {
+    public void pauseGameLoop() {
         this.gameLoop.pauseLoop();
     }
+
+    @Override
+    public void resumeGameLoop() { this.gameLoop.resumeLoop();  }
+
+    @Override
+    public boolean isGameLoopPaused() { return this.gameLoop.isPaused(); }
 
     @Override
     public long getElapsedTime() {

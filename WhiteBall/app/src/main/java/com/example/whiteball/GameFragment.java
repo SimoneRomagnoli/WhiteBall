@@ -1,15 +1,16 @@
 package com.example.whiteball;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;
@@ -27,11 +28,13 @@ public class GameFragment extends Fragment {
     private GameView gameView;
     private Controller controller;
     private Model model;
+    private Button pauseButton;
 
     public GameFragment() {
         // Required empty public constructor
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +48,19 @@ public class GameFragment extends Fragment {
         this.gameView.launch(this.controller);
         ((View)this.gameView).setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         gameLayout.addView((View) this.gameView);
+
+        this.pauseButton = root.findViewById(R.id.pause_button);
+        this.pauseButton.getLayoutParams().width = Constants.SCREEN_WIDTH/10;
+        this.pauseButton.getLayoutParams().height = Constants.SCREEN_WIDTH/10;
+        this.pauseButton.setOnClickListener(v -> {
+            if(this.controller.isGameLoopPaused()) {
+                this.controller.resumeGameLoop();
+                this.pauseButton.setBackgroundResource(R.drawable.pause);
+            } else {
+                this.controller.pauseGameLoop();
+                this.pauseButton.setBackgroundResource(R.drawable.resume);
+            }
+        });
 
         return root;
     }

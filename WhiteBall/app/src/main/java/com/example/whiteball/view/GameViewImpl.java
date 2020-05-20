@@ -23,30 +23,10 @@ public class GameViewImpl extends View implements GameView {
 
     private Context context;
     private Controller controller;
-    private Canvas canvas;
-    private View pause;
-    private Button b;
 
     public GameViewImpl(Context context) {
         super(context);
         this.context = context;
-
-        LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        pause = li.inflate(R.layout.pause, null);
-        pause.measure(MeasureSpec.getSize(pause.getMeasuredWidth()), MeasureSpec.getSize(pause.getMeasuredHeight()));
-        pause.layout(0, 0, 0, 0);
-
-        this.canvas = new Canvas();
-        this.setBackgroundColor(Color.BLACK);
-
-        b = pause.findViewById(R.id.pause_button);
-        b.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Constants.CURRENT_CONTEXT, "botton cliccato", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     @Override
@@ -54,7 +34,6 @@ public class GameViewImpl extends View implements GameView {
         super.draw(canvas);
         this.render(canvas);
         this.printElapsedTime(canvas);
-        pause.draw(canvas);
         //this.printFPS(canvas);
         invalidate();
     }

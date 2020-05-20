@@ -7,4 +7,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="resume">resume</string>
+    <string name="exit">exit</string>
+    <string name="retry">retry</string>
+    <string name="go_to_menu">go to menu</string>
 </resources>

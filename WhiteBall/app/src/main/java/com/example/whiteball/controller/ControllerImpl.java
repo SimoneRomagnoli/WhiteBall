@@ -1,5 +1,7 @@
 package com.example.whiteball.controller;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.example.whiteball.model.entities.Entity;
 import com.example.whiteball.view.GameView;
 import com.example.whiteball.model.Model;
@@ -12,17 +14,19 @@ public class ControllerImpl implements Controller, InputObserver {
     private Model model;
     private GameLoop gameLoop;
     private InputManager inputManager;
+    private FragmentManager fragmentManager;
 
-    public ControllerImpl(Model model, GameView gameView) {
+    public ControllerImpl(Model model, GameView gameView, FragmentManager fragmentManager) {
         this.model = model;
         this.gameView = gameView;
         this.inputManager = new InputManager(this);
         this.inputManager.addObserver(this);
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
     public void startGameLoop() {
-        this.gameLoop = new GameLoop(this.gameView, this.model);
+        this.gameLoop = new GameLoop(this.gameView, this.model, this.fragmentManager);
         this.gameLoop.startGameLoop();
     }
 

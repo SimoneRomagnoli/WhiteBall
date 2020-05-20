@@ -2,6 +2,9 @@ package com.example.whiteball;
 
 import android.content.Context;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 public class Constants {
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;

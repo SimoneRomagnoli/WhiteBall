@@ -2,13 +2,8 @@ package com.example.whiteball.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 

@@ -10,6 +10,8 @@ import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.whiteball.fragments.MenuFragment;
+
 public class MainActivity extends FragmentActivity {
 
     private FragmentManager manager;

@@ -1,8 +1,12 @@
 package com.example.whiteball.controller;
 
-import android.widget.Toast;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.whiteball.Constants;
+import com.example.whiteball.R;
+import com.example.whiteball.fragments.GameOverFragment;
+import com.example.whiteball.fragments.MenuFragment;
 import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
 import com.google.common.collect.ImmutableList;
@@ -14,6 +18,7 @@ public class GameLoop extends Thread {
     private static final int FPS = 60;
     private final long frameRate;
 
+    private FragmentManager manager;
     private GameView gameView;
     private Model model;
     private double avgFPS = 0;
@@ -21,11 +26,12 @@ public class GameLoop extends Thread {
     private boolean paused;
     private List<Command> commands;
 
-    public GameLoop(GameView gameView, Model model) {
+    public GameLoop(GameView gameView, Model model, FragmentManager manager) {
         super();
         this.isRunning = false;
         this.paused = false;
 
+        this.manager = manager;
         this.gameView = gameView;
         this.model = model;
         this.frameRate = (long) (1 / (this.FPS * 0.001));
@@ -42,7 +48,12 @@ public class GameLoop extends Thread {
             final long currentTime = System.currentTimeMillis();
 
             if(this.model.isGameOver()) {
-                this.paused = true;
+                this.pauseLoop();
+
+                FragmentTransaction t = this.manager.beginTransaction();
+                GameOverFragment gameOverFragment = new GameOverFragment(this.manager);
+                t.add(R.id.fragment_container, gameOverFragment);
+                t.commit();
             }
 
             //Heart of the game loop: taking input, updating and rendering

@@ -1,7 +1,6 @@
 package com.example.whiteball.controller;
 
 import com.example.whiteball.model.entities.Entity;
-import com.example.whiteball.model.entities.EntityType;
 import com.example.whiteball.view.GameView;
 import com.example.whiteball.model.Model;
 

@@ -57,6 +57,11 @@ public class ControllerImpl implements Controller, InputObserver {
     public boolean isGameLoopPaused() { return this.gameLoop.isPaused(); }
 
     @Override
+    public boolean isGameLoopRunning() {
+        return this.gameLoop.isRunning();
+    }
+
+    @Override
     public long getElapsedTime() {
         return this.model.getElapsedTime();
     }

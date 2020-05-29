@@ -35,5 +35,7 @@ public interface Controller {
 
     boolean isGameLoopPaused();
 
+    boolean isGameLoopRunning();
+
     long getElapsedTime();
 }

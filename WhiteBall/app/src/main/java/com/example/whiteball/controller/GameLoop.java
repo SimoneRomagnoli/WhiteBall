@@ -48,7 +48,7 @@ public class GameLoop extends Thread {
             final long currentTime = System.currentTimeMillis();
 
             if(this.model.isGameOver()) {
-                this.pauseLoop();
+                this.stopGameLoop();
 
                 FragmentTransaction t = this.manager.beginTransaction();
                 GameOverFragment gameOverFragment = new GameOverFragment(this.manager);
@@ -94,6 +94,8 @@ public class GameLoop extends Thread {
     public void stopGameLoop() {
         this.isRunning = false;
     }
+
+    public boolean isRunning() { return this.isRunning; }
 
     public void addInput(Command command) {
         this.commands.add(command);

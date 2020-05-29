@@ -40,6 +40,7 @@ public class GameFragment extends Fragment {
 
     private LinearLayout pausedLayout;
     private Button resumeButton;
+    private Button restartButton;
     private Button exitButton;
 
     public GameFragment(FragmentManager manager) {
@@ -61,14 +62,16 @@ public class GameFragment extends Fragment {
         this.pauseButton.getLayoutParams().width = Constants.SCREEN_WIDTH/10;
         this.pauseButton.getLayoutParams().height = Constants.SCREEN_WIDTH/10;
         this.pauseButton.setOnClickListener(v -> {
-            if(this.controller.isGameLoopPaused()) {
-                this.pausedLayout.setVisibility(View.INVISIBLE);
-                this.controller.resumeGameLoop();
-                this.pauseButton.setBackgroundResource(R.drawable.pause);
-            } else {
-                this.pausedLayout.setVisibility(View.VISIBLE);
-                this.controller.pauseGameLoop();
-                this.pauseButton.setBackgroundResource(R.drawable.resume);
+            if(this.controller.isGameLoopRunning()) {
+                if (this.controller.isGameLoopPaused()) {
+                    this.pausedLayout.setVisibility(View.INVISIBLE);
+                    this.controller.resumeGameLoop();
+                    this.pauseButton.setBackgroundResource(R.drawable.pause);
+                } else {
+                    this.pausedLayout.setVisibility(View.VISIBLE);
+                    this.controller.pauseGameLoop();
+                    this.pauseButton.setBackgroundResource(R.drawable.resume);
+                }
             }
         });
 
@@ -84,6 +87,14 @@ public class GameFragment extends Fragment {
                 this.controller.resumeGameLoop();
                 this.pauseButton.setBackgroundResource(R.drawable.pause);
             }
+        });
+
+        this.restartButton = root.findViewById(R.id.restart_button);
+        this.restartButton.setOnClickListener(v -> {
+            FragmentTransaction t = this.manager.beginTransaction();
+            GameFragment gameFragment = new GameFragment(this.manager);
+            t.add(R.id.fragment_container, gameFragment);
+            t.commit();
         });
 
         this.exitButton = root.findViewById(R.id.exit_button);

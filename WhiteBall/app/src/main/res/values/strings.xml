@@ -11,4 +11,6 @@
     <string name="exit">exit</string>
     <string name="retry">retry</string>
     <string name="go_to_menu">go to menu</string>
+    <string name="restart">restart</string>
+    <string name="settings">settings</string>
 </resources>

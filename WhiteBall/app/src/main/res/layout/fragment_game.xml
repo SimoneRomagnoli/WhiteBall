@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/paused_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
@@ -17,7 +17,7 @@
 
         <Button
             android:id="@+id/resume_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#000000"
@@ -26,8 +26,18 @@
             android:textSize="30sp" />
 
         <Button
+            android:id="@+id/restart_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#000000"
+            android:text="@string/restart"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
             android:id="@+id/exit_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#000000"

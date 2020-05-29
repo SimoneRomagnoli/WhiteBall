@@ -17,14 +17,43 @@
         android:textColor="#FFFFFF"
         android:textSize="80sp" />
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/menu_options_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
-        android:text="@string/start"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:background="#000000">
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#000000"
+            android:text="@string/start"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#000000"
+            android:text="@string/settings"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/close_app_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#000000"
+            android:text="@string/exit"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+    </LinearLayout>
 
 </FrameLayout>

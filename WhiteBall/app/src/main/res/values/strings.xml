@@ -13,4 +13,8 @@
     <string name="go_to_menu">go to menu</string>
     <string name="restart">restart</string>
     <string name="settings">settings</string>
+    <string name="back">back</string>
+    <string name="sixty">60</string>
+    <string name="thirty">30</string>
+    <string name="fps">FPS</string>
 </resources>

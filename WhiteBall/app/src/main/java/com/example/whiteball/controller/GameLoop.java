@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameLoop extends Thread {
-    private static final int FPS = 60;
     private final long frameRate;
 
     private FragmentManager manager;
@@ -34,7 +33,7 @@ public class GameLoop extends Thread {
         this.manager = manager;
         this.gameView = gameView;
         this.model = model;
-        this.frameRate = (long) (1 / (this.FPS * 0.001));
+        this.frameRate = (long) (1 / (Constants.FPS * 0.001));
         this.commands = new ArrayList<>();
     }
 

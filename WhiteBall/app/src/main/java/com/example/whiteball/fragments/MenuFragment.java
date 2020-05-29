@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.whiteball.Constants;
 import com.example.whiteball.R;
 import com.example.whiteball.fragments.GameFragment;
 
@@ -26,6 +27,8 @@ public class MenuFragment extends Fragment {
 
     private FrameLayout menuLayout;
     private Button startButton;
+    private Button settingsButton;
+    private Button exitButton;
 
     public MenuFragment(FragmentManager manager) {
         this.manager = manager;
@@ -36,16 +39,30 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        Constants.FPS = 60;
+
         this.menuLayout = root.findViewById(R.id.fragment_menu);
         this.menuLayout.setBackgroundColor(Color.BLACK);
 
         this.startButton = root.findViewById(R.id.start_button);
         this.startButton.setOnClickListener(v -> {
-
             FragmentTransaction t = this.manager.beginTransaction();
             GameFragment gameFragment = new GameFragment(this.manager);
             t.add(R.id.fragment_container, gameFragment);
             t.commit();
+        });
+
+        this.settingsButton = root.findViewById(R.id.settings_button);
+        this.settingsButton.setOnClickListener(v -> {
+            FragmentTransaction t = this.manager.beginTransaction();
+            SettingsFragment settingsFragment = new SettingsFragment(this.manager);
+            t.add(R.id.fragment_container, settingsFragment);
+            t.commit();
+        });
+
+        this.exitButton = root.findViewById(R.id.close_app_button);
+        this.exitButton.setOnClickListener(v -> {
+            //come si chiude la applicazione?
         });
 
         return root;

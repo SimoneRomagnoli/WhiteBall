@@ -6,13 +6,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-import com.example.whiteball.Constants;
+import com.example.whiteball.utility.Constants;
 import com.example.whiteball.model.CommandType;
-import com.example.whiteball.model.Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 public class InputManager implements SensorEventListener, InputObservable {
     public static final double GYROSCOPE_SENSITIVITY = 0.5;

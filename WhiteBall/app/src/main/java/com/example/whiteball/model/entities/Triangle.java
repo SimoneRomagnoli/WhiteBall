@@ -2,7 +2,7 @@ package com.example.whiteball.model.entities;
 
 import android.graphics.Point;
 
-import com.example.whiteball.Constants;
+import com.example.whiteball.utility.Constants;
 
 public class Triangle extends EntityImpl {
     private static final Integer EDGE = Constants.TRIANGLE_EDGE;

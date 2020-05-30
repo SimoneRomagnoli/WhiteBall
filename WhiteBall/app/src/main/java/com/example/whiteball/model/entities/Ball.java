@@ -2,7 +2,7 @@ package com.example.whiteball.model.entities;
 
 import android.graphics.Point;
 
-import com.example.whiteball.Constants;
+import com.example.whiteball.utility.Constants;
 
 public class Ball extends EntityImpl implements Entity {
     private static final Integer RADIUS = Constants.PLAYER_RADIUS_INT;

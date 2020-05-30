@@ -7,7 +7,6 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-import com.example.whiteball.Constants;
 import com.example.whiteball.model.entities.EntityType;
 import com.google.common.collect.ImmutableMap;
 

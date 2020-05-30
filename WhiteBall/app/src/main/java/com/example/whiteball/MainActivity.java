@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.whiteball.fragments.MenuFragment;
+import com.example.whiteball.utility.Constants;
 
 public class MainActivity extends FragmentActivity {
 
@@ -31,6 +32,7 @@ public class MainActivity extends FragmentActivity {
         Constants.SCREEN_HEIGHT = outSize.y;
 
         Constants.CURRENT_CONTEXT = this;
+        Constants.PLAYING_SONG = R.raw.giorno_giovanna;
 
         setContentView(R.layout.activity_main);
         this.manager = getSupportFragmentManager();

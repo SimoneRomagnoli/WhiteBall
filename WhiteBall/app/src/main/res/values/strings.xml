@@ -17,4 +17,11 @@
     <string name="sixty">60</string>
     <string name="thirty">30</string>
     <string name="fps">FPS</string>
+    <string name="music">MUSIC</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
+    <string name="sound">SOUND</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
 </resources>

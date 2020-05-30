@@ -1,4 +1,4 @@
-package com.example.whiteball;
+package com.example.whiteball.utility;
 
 import android.content.Context;
 
@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentManager;
 public class Constants {
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;
-
     public static int FPS;
+    public static int PLAYING_SONG;
 
     public static Context CURRENT_CONTEXT;
 

@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.example.whiteball.Constants;
+import com.example.whiteball.utility.Constants;
 import com.example.whiteball.R;
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.controller.ControllerImpl;

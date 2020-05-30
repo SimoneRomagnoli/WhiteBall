@@ -2,7 +2,7 @@ package com.example.whiteball.model.entities;
 
 import android.graphics.Point;
 
-import com.example.whiteball.Constants;
+import com.example.whiteball.utility.Constants;
 import com.example.whiteball.model.entities.components.CollisionComponent;
 import com.example.whiteball.model.entities.components.GravityComponent;
 import com.example.whiteball.model.entities.components.InputComponent;

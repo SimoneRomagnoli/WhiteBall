@@ -3,10 +3,9 @@ package com.example.whiteball.controller;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.whiteball.Constants;
+import com.example.whiteball.utility.Constants;
 import com.example.whiteball.R;
 import com.example.whiteball.fragments.GameOverFragment;
-import com.example.whiteball.fragments.MenuFragment;
 import com.example.whiteball.model.Model;
 import com.example.whiteball.view.GameView;
 import com.google.common.collect.ImmutableList;

@@ -33,6 +33,8 @@ public class MainActivity extends FragmentActivity {
 
         Constants.CURRENT_CONTEXT = this;
         Constants.PLAYING_SONG = R.raw.giorno_giovanna;
+        Constants.MEDIA_PLAYER_ON = false;
+        Constants.FPS = 60;
 
         setContentView(R.layout.activity_main);
         this.manager = getSupportFragmentManager();

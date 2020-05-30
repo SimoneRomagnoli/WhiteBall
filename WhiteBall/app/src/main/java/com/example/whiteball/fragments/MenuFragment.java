@@ -38,8 +38,6 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        Constants.FPS = 60;
-
         this.menuLayout = root.findViewById(R.id.fragment_menu);
         this.menuLayout.setBackgroundColor(Color.BLACK);
 

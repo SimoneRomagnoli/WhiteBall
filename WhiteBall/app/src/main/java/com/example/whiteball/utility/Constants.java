@@ -10,6 +10,7 @@ public class Constants {
     public static int SCREEN_HEIGHT;
     public static int FPS;
     public static int PLAYING_SONG;
+    public static boolean MEDIA_PLAYER_ON;
 
     public static Context CURRENT_CONTEXT;
 

@@ -29,6 +29,7 @@ public class SettingsFragment extends Fragment {
     private FragmentManager manager;
 
     private FrameLayout settingsLayout;
+    private int buttonsWidth = (int)(Constants.SCREEN_WIDTH / 2);
 
     private List<Button> fpsButtons;
     private Button fps30Button;
@@ -48,7 +49,6 @@ public class SettingsFragment extends Fragment {
         this.manager = manager;
         this.fpsButtons = new ArrayList<>();
         this.soundButtons = new ArrayList<>();
-
     }
 
     @Override
@@ -60,9 +60,44 @@ public class SettingsFragment extends Fragment {
         this.settingsLayout = root.findViewById(R.id.settings_layout);
         this.settingsLayout.setBackgroundColor(Color.BLACK);
 
+        //MUSIC
+        this.musicOnButton = root.findViewById(R.id.music_on);
+        this.musicOnButton.getLayoutParams().width = this.buttonsWidth / 2;
+        if(Constants.MEDIA_PLAYER_ON) {
+            this.musicOnButton.setBackgroundColor(Color.WHITE);
+            this.musicOnButton.setTextColor(Color.BLACK);
+        }
+        this.musicOnButton.setOnClickListener(v -> {
+            this.musicOnButton.setBackgroundColor(Color.WHITE);
+            this.musicOnButton.setTextColor(Color.BLACK);
+            this.musicOffButton.setBackgroundColor(Color.BLACK);
+            this.musicOffButton.setTextColor(Color.WHITE);
+            Constants.MEDIA_PLAYER_ON = true;
+            (Constants.CURRENT_CONTEXT).startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        });
+
+        this.musicOffButton = root.findViewById(R.id.music_off);
+        this.musicOffButton.getLayoutParams().width = this.buttonsWidth / 2;
+        if(!Constants.MEDIA_PLAYER_ON) {
+            this.musicOffButton.setBackgroundColor(Color.WHITE);
+            this.musicOffButton.setTextColor(Color.BLACK);
+        }
+        this.musicOffButton.setOnClickListener(v -> {
+            this.musicOffButton.setBackgroundColor(Color.WHITE);
+            this.musicOffButton.setTextColor(Color.BLACK);
+            this.musicOnButton.setBackgroundColor(Color.BLACK);
+            this.musicOnButton.setTextColor(Color.WHITE);
+            Constants.MEDIA_PLAYER_ON = false;
+            (Constants.CURRENT_CONTEXT).stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        });
+
         //FPS
         this.fps30Button = root.findViewById(R.id.fps_30_button);
         this.fpsButtons.add(fps30Button);
+        if(Constants.FPS == 30) {
+            this.fps30Button.setBackgroundColor(Color.WHITE);
+            this.fps30Button.setTextColor(Color.BLACK);
+        }
         this.fps30Button.setOnClickListener(v -> {
             Constants.FPS = 30;
             for(Button b: this.fpsButtons) {
@@ -75,8 +110,10 @@ public class SettingsFragment extends Fragment {
 
         this.fps60Button = root.findViewById(R.id.fps_60_button);
         this.fpsButtons.add(fps60Button);
-        this.fps60Button.setBackgroundColor(Color.WHITE);
-        this.fps60Button.setTextColor(Color.BLACK);
+        if(Constants.FPS == 60) {
+            this.fps60Button.setBackgroundColor(Color.WHITE);
+            this.fps60Button.setTextColor(Color.BLACK);
+        }
         this.fps60Button.setOnClickListener(v -> {
             Constants.FPS = 60;
             for(Button b: this.fpsButtons) {
@@ -87,32 +124,17 @@ public class SettingsFragment extends Fragment {
             fps60Button.setTextColor(Color.BLACK);
         });
 
-        //MUSIC
-        this.musicOnButton = root.findViewById(R.id.music_on);
-        this.musicOnButton.setOnClickListener(v -> {
-            this.musicOnButton.setBackgroundColor(Color.WHITE);
-            this.musicOnButton.setTextColor(Color.BLACK);
-            this.musicOffButton.setBackgroundColor(Color.BLACK);
-            this.musicOffButton.setTextColor(Color.WHITE);
-            (Constants.CURRENT_CONTEXT).startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
-        });
-
-        this.musicOffButton = root.findViewById(R.id.music_off);
-        this.musicOffButton.setBackgroundColor(Color.WHITE);
-        this.musicOffButton.setTextColor(Color.BLACK);
-        this.musicOffButton.setOnClickListener(v -> {
-            this.musicOffButton.setBackgroundColor(Color.WHITE);
-            this.musicOffButton.setTextColor(Color.BLACK);
-            this.musicOnButton.setBackgroundColor(Color.BLACK);
-            this.musicOnButton.setTextColor(Color.WHITE);
-            (Constants.CURRENT_CONTEXT).stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
-        });
+        for(Button b: this.fpsButtons) {
+            b.getLayoutParams().width = this.buttonsWidth / this.fpsButtons.size();
+        }
 
         //SOUND
         this.soundOneButton = root.findViewById(R.id.sound_one);
         this.soundButtons.add(this.soundOneButton);
-        this.soundOneButton.setBackgroundColor(Color.WHITE);
-        this.soundOneButton.setTextColor(Color.BLACK);
+        if(Constants.PLAYING_SONG == R.raw.giorno_giovanna) {
+            this.soundOneButton.setBackgroundColor(Color.WHITE);
+            this.soundOneButton.setTextColor(Color.BLACK);
+        }
         this.soundOneButton.setOnClickListener(v -> {
             if(Constants.PLAYING_SONG != R.raw.giorno_giovanna) {
                 Constants.PLAYING_SONG = R.raw.giorno_giovanna;
@@ -129,6 +151,10 @@ public class SettingsFragment extends Fragment {
 
         this.soundTwoButton = root.findViewById(R.id.sound_two);
         this.soundButtons.add(this.soundTwoButton);
+        if(Constants.PLAYING_SONG == R.raw.bruno_bucciarati) {
+            this.soundTwoButton.setBackgroundColor(Color.WHITE);
+            this.soundTwoButton.setTextColor(Color.BLACK);
+        }
         this.soundTwoButton.setOnClickListener(v -> {
             if(Constants.PLAYING_SONG != R.raw.bruno_bucciarati) {
                 Constants.PLAYING_SONG = R.raw.bruno_bucciarati;
@@ -145,6 +171,10 @@ public class SettingsFragment extends Fragment {
 
         this.soundThreeButton = root.findViewById(R.id.sound_three);
         this.soundButtons.add(this.soundThreeButton);
+        if(Constants.PLAYING_SONG == R.raw.dio_brando) {
+            this.soundThreeButton.setBackgroundColor(Color.WHITE);
+            this.soundThreeButton.setTextColor(Color.BLACK);
+        }
         this.soundThreeButton.setOnClickListener(v -> {
             if(Constants.PLAYING_SONG != R.raw.dio_brando) {
                 Constants.PLAYING_SONG = R.raw.dio_brando;
@@ -159,6 +189,11 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        for(Button b: this.soundButtons) {
+            b.getLayoutParams().width = this.buttonsWidth / this.soundButtons.size();
+        }
+
+        //BACK
         this.backButton = root.findViewById(R.id.back_button);
         this.backButton.setOnClickListener(v -> {
             FragmentTransaction t = this.manager.beginTransaction();

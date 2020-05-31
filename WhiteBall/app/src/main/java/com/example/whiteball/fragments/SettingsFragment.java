@@ -2,6 +2,7 @@ package com.example.whiteball.fragments;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,7 @@ public class SettingsFragment extends Fragment {
     private FragmentManager manager;
 
     private FrameLayout settingsLayout;
+    private AnimationDrawable animation;
     private int buttonsWidth = (int)(Constants.SCREEN_WIDTH / 2);
 
     private List<Button> fpsButtons;
@@ -59,6 +61,9 @@ public class SettingsFragment extends Fragment {
 
         this.settingsLayout = root.findViewById(R.id.settings_layout);
         this.settingsLayout.setBackgroundColor(Color.BLACK);
+        this.settingsLayout.setBackgroundResource(R.drawable.animation_background);
+        this.animation = (AnimationDrawable) this.settingsLayout.getBackground();
+        this.animation.start();
 
         //MUSIC
         this.musicOnButton = root.findViewById(R.id.music_on);

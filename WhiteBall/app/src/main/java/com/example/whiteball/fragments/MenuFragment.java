@@ -1,6 +1,8 @@
 package com.example.whiteball.fragments;
 
 import android.graphics.Color;
+import android.graphics.drawable.AnimatedStateListDrawable;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.example.whiteball.utility.Constants;
 import com.example.whiteball.R;
@@ -25,6 +28,8 @@ public class MenuFragment extends Fragment {
     private FragmentManager manager;
 
     private FrameLayout menuLayout;
+
+    private AnimationDrawable animation;
     private Button startButton;
     private Button settingsButton;
     private Button exitButton;
@@ -40,17 +45,23 @@ public class MenuFragment extends Fragment {
 
         this.menuLayout = root.findViewById(R.id.fragment_menu);
         this.menuLayout.setBackgroundColor(Color.BLACK);
+        this.menuLayout.setBackgroundResource(R.drawable.animation_background);
+        this.animation = (AnimationDrawable) this.menuLayout.getBackground();
+        this.animation.start();
 
         this.startButton = root.findViewById(R.id.start_button);
         this.startButton.setOnClickListener(v -> {
+            this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             GameFragment gameFragment = new GameFragment(this.manager);
-            t.add(R.id.fragment_container, gameFragment);
+            t.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            t.replace(R.id.fragment_container, gameFragment);
             t.commit();
         });
 
         this.settingsButton = root.findViewById(R.id.settings_button);
         this.settingsButton.setOnClickListener(v -> {
+            this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             SettingsFragment settingsFragment = new SettingsFragment(this.manager);
             t.add(R.id.fragment_container, settingsFragment);

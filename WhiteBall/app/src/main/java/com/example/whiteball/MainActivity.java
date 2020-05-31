@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -11,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.whiteball.fragments.MenuFragment;
+import com.example.whiteball.utility.AudioManager;
 import com.example.whiteball.utility.Constants;
 
 public class MainActivity extends FragmentActivity {
@@ -33,7 +35,8 @@ public class MainActivity extends FragmentActivity {
 
         Constants.CURRENT_CONTEXT = this;
         Constants.PLAYING_SONG = R.raw.giorno_giovanna;
-        Constants.MEDIA_PLAYER_ON = false;
+        Constants.MEDIA_PLAYER_ON = true;
+        this.startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
         Constants.FPS = 60;
 
         setContentView(R.layout.activity_main);

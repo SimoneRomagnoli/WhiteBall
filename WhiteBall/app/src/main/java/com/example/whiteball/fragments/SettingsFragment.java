@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.whiteball.model.GameMode;
 import com.example.whiteball.utility.AudioManager;
 import com.example.whiteball.utility.Constants;
 import com.example.whiteball.R;
@@ -31,7 +32,12 @@ public class SettingsFragment extends Fragment {
 
     private FrameLayout settingsLayout;
     private AnimationDrawable animation;
-    private int buttonsWidth = (int)(Constants.SCREEN_WIDTH / 2);
+
+    private int buttonsWidth = Constants.SCREEN_WIDTH / 2;
+
+    private List<Button> modsButtons;
+    private Button xModButton;
+    private Button yModButton;
 
     private List<Button> fpsButtons;
     private Button fps30Button;
@@ -51,6 +57,7 @@ public class SettingsFragment extends Fragment {
         this.manager = manager;
         this.fpsButtons = new ArrayList<>();
         this.soundButtons = new ArrayList<>();
+        this.modsButtons = new ArrayList<>();
     }
 
     @Override
@@ -65,12 +72,55 @@ public class SettingsFragment extends Fragment {
         this.animation = (AnimationDrawable) this.settingsLayout.getBackground();
         this.animation.start();
 
+        //GAME MODE
+        this.xModButton = root.findViewById(R.id.x_mode_button);
+        this.modsButtons.add(xModButton);
+        if(Constants.GAME_MODE == GameMode.X) {
+            this.xModButton.setBackgroundResource(R.drawable.button_selected);
+            this.xModButton.setTextColor(Color.BLACK);
+        } else {
+            this.xModButton.setBackgroundResource(R.drawable.button_selector);
+        }
+        this.xModButton.setOnClickListener(v -> {
+            Constants.GAME_MODE = GameMode.X;
+            for(Button b: this.modsButtons) {
+                b.setBackgroundResource(R.drawable.button_selector);
+                b.setTextColor(Color.WHITE);
+            }
+            this.xModButton.setBackgroundResource(R.drawable.button_selected);
+            this.xModButton.setTextColor(Color.BLACK);
+        });
+
+        this.yModButton = root.findViewById(R.id.y_mode_button);
+        this.modsButtons.add(yModButton);
+        if(Constants.GAME_MODE == GameMode.Y) {
+            this.yModButton.setBackgroundResource(R.drawable.button_selected);
+            this.yModButton.setTextColor(Color.BLACK);
+        } else {
+            this.yModButton.setBackgroundResource(R.drawable.button_selector);
+        }
+        this.yModButton.setOnClickListener(v -> {
+            Constants.GAME_MODE = GameMode.Y;
+            for(Button b: this.modsButtons) {
+                b.setBackgroundResource(R.drawable.button_selector);
+                b.setTextColor(Color.WHITE);
+            }
+            this.yModButton.setBackgroundResource(R.drawable.button_selected);
+            this.yModButton.setTextColor(Color.BLACK);
+        });
+
+        for(Button b: this.modsButtons) {
+            b.getLayoutParams().width = this.buttonsWidth / this.modsButtons.size();
+        }
+
         //MUSIC
         this.musicOnButton = root.findViewById(R.id.music_on);
         this.musicOnButton.getLayoutParams().width = this.buttonsWidth / 2;
         if(Constants.MEDIA_PLAYER_ON) {
             this.musicOnButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOnButton.setTextColor(Color.BLACK);
+        } else {
+            this.musicOnButton.setBackgroundResource(R.drawable.button_selector);
         }
         this.musicOnButton.setOnClickListener(v -> {
             this.musicOnButton.setBackgroundResource(R.drawable.button_selected);
@@ -86,6 +136,8 @@ public class SettingsFragment extends Fragment {
         if(!Constants.MEDIA_PLAYER_ON) {
             this.musicOffButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOffButton.setTextColor(Color.BLACK);
+        } else {
+            this.musicOffButton.setBackgroundResource(R.drawable.button_selector);
         }
         this.musicOffButton.setOnClickListener(v -> {
             this.musicOffButton.setBackgroundResource(R.drawable.button_selected);
@@ -102,6 +154,8 @@ public class SettingsFragment extends Fragment {
         if(Constants.FPS == 30) {
             this.fps30Button.setBackgroundResource(R.drawable.button_selected);
             this.fps30Button.setTextColor(Color.BLACK);
+        } else {
+            this.fps30Button.setBackgroundResource(R.drawable.button_selector);
         }
         this.fps30Button.setOnClickListener(v -> {
             Constants.FPS = 30;
@@ -118,6 +172,8 @@ public class SettingsFragment extends Fragment {
         if(Constants.FPS == 60) {
             this.fps60Button.setBackgroundResource(R.drawable.button_selected);
             this.fps60Button.setTextColor(Color.BLACK);
+        } else {
+            this.fps60Button.setBackgroundResource(R.drawable.button_selector);
         }
         this.fps60Button.setOnClickListener(v -> {
             Constants.FPS = 60;
@@ -139,12 +195,16 @@ public class SettingsFragment extends Fragment {
         if(Constants.PLAYING_SONG == R.raw.giorno_giovanna) {
             this.soundOneButton.setBackgroundResource(R.drawable.button_selected);
             this.soundOneButton.setTextColor(Color.BLACK);
+        } else {
+            this.soundOneButton.setBackgroundResource(R.drawable.button_selector);
         }
         this.soundOneButton.setOnClickListener(v -> {
             if(Constants.PLAYING_SONG != R.raw.giorno_giovanna) {
                 Constants.PLAYING_SONG = R.raw.giorno_giovanna;
-                this.musicOffButton.performClick();
-                this.musicOnButton.performClick();
+                if(Constants.MEDIA_PLAYER_ON) {
+                    this.musicOffButton.performClick();
+                    this.musicOnButton.performClick();
+                }
                 for(Button b: this.soundButtons) {
                     b.setBackgroundResource(R.drawable.button_selector);
                     b.setTextColor(Color.WHITE);
@@ -159,12 +219,16 @@ public class SettingsFragment extends Fragment {
         if(Constants.PLAYING_SONG == R.raw.bruno_bucciarati) {
             this.soundTwoButton.setBackgroundResource(R.drawable.button_selected);
             this.soundTwoButton.setTextColor(Color.BLACK);
+        } else {
+            this.soundTwoButton.setBackgroundResource(R.drawable.button_selector);
         }
         this.soundTwoButton.setOnClickListener(v -> {
             if(Constants.PLAYING_SONG != R.raw.bruno_bucciarati) {
                 Constants.PLAYING_SONG = R.raw.bruno_bucciarati;
-                this.musicOffButton.performClick();
-                this.musicOnButton.performClick();
+                if(Constants.MEDIA_PLAYER_ON) {
+                    this.musicOffButton.performClick();
+                    this.musicOnButton.performClick();
+                }
                 for(Button b: this.soundButtons) {
                     b.setBackgroundResource(R.drawable.button_selector);
                     b.setTextColor(Color.WHITE);
@@ -179,12 +243,16 @@ public class SettingsFragment extends Fragment {
         if(Constants.PLAYING_SONG == R.raw.dio_brando) {
             this.soundThreeButton.setBackgroundResource(R.drawable.button_selected);
             this.soundThreeButton.setTextColor(Color.BLACK);
+        } else {
+            this.soundThreeButton.setBackgroundResource(R.drawable.button_selector);
         }
         this.soundThreeButton.setOnClickListener(v -> {
             if(Constants.PLAYING_SONG != R.raw.dio_brando) {
                 Constants.PLAYING_SONG = R.raw.dio_brando;
-                this.musicOffButton.performClick();
-                this.musicOnButton.performClick();
+                if(Constants.MEDIA_PLAYER_ON) {
+                    this.musicOffButton.performClick();
+                    this.musicOnButton.performClick();
+                }
                 for(Button b: this.soundButtons) {
                     b.setBackgroundResource(R.drawable.button_selector);
                     b.setTextColor(Color.WHITE);

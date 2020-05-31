@@ -22,24 +22,35 @@
         android:id="@+id/settings_layouts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp"
+        android:paddingLeft="20dp"
         android:orientation="horizontal"
         android:layout_gravity="center">
 
         <LinearLayout
             android:id="@+id/settings_text_views"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginStart="30dp">
+            android:layout_marginStart="20dp">
+
+            <TextView
+                android:id="@+id/mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="6dp"
+                android:text="@string/game_mode"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/fps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:paddingTop="3dp"
+                android:paddingTop="6dp"
                 android:text="@string/fps"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -50,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:paddingTop="3dp"
+                android:paddingTop="6dp"
                 android:text="@string/music"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -61,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:paddingTop="3dp"
+                android:paddingTop="6dp"
                 android:textAlignment="center"
                 android:text="@string/sound"
                 android:textColor="#FFFFFF"
@@ -75,6 +86,33 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:paddingLeft="20dp">
+
+            <LinearLayout
+                android:id="@+id/game_mode_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/x_mode_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#000000"
+                    android:text="@string/x"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/y_mode_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#000000"
+                    android:text="@string/y"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/fps_layout"
@@ -175,7 +213,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="#000000"
         android:text="@string/back"
         android:textColor="#FFFFFF"

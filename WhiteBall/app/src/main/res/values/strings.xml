@@ -24,4 +24,7 @@
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
+    <string name="game_mode">MODE</string>
+    <string name="x">x</string>
+    <string name="y">y</string>
 </resources>

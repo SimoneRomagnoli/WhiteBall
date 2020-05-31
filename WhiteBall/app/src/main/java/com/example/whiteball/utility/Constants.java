@@ -5,12 +5,15 @@ import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.whiteball.model.GameMode;
+
 public class Constants {
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;
     public static int FPS;
     public static int PLAYING_SONG;
     public static boolean MEDIA_PLAYER_ON;
+    public static GameMode GAME_MODE;
 
     public static Context CURRENT_CONTEXT;
 

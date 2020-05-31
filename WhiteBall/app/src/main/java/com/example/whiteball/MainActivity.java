@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.whiteball.fragments.MenuFragment;
+import com.example.whiteball.model.GameMode;
 import com.example.whiteball.utility.AudioManager;
 import com.example.whiteball.utility.Constants;
 
@@ -34,6 +35,7 @@ public class MainActivity extends FragmentActivity {
         Constants.SCREEN_HEIGHT = outSize.y;
 
         Constants.CURRENT_CONTEXT = this;
+        Constants.GAME_MODE = GameMode.X;
         Constants.PLAYING_SONG = R.raw.giorno_giovanna;
         Constants.MEDIA_PLAYER_ON = true;
         this.startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));

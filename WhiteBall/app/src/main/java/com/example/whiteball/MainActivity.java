@@ -48,4 +48,10 @@ public class MainActivity extends FragmentActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        this.stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        super.onDestroy();
+    }
+
 }

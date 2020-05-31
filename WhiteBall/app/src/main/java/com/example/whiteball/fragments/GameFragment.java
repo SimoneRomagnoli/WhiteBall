@@ -93,7 +93,7 @@ public class GameFragment extends Fragment {
         this.restartButton.setOnClickListener(v -> {
             FragmentTransaction t = this.manager.beginTransaction();
             GameFragment gameFragment = new GameFragment(this.manager);
-            t.add(R.id.fragment_container, gameFragment);
+            t.replace(R.id.fragment_container, gameFragment);
             t.commit();
         });
 
@@ -103,7 +103,7 @@ public class GameFragment extends Fragment {
 
             FragmentTransaction t = this.manager.beginTransaction();
             MenuFragment menuFragment = new MenuFragment(this.manager);
-            t.add(R.id.fragment_container, menuFragment);
+            t.replace(R.id.fragment_container, menuFragment);
             t.commit();
         });
 

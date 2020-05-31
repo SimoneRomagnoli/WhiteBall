@@ -69,13 +69,13 @@ public class SettingsFragment extends Fragment {
         this.musicOnButton = root.findViewById(R.id.music_on);
         this.musicOnButton.getLayoutParams().width = this.buttonsWidth / 2;
         if(Constants.MEDIA_PLAYER_ON) {
-            this.musicOnButton.setBackgroundColor(Color.WHITE);
+            this.musicOnButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOnButton.setTextColor(Color.BLACK);
         }
         this.musicOnButton.setOnClickListener(v -> {
-            this.musicOnButton.setBackgroundColor(Color.WHITE);
+            this.musicOnButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOnButton.setTextColor(Color.BLACK);
-            this.musicOffButton.setBackgroundColor(Color.BLACK);
+            this.musicOffButton.setBackgroundResource(R.drawable.button_selector);
             this.musicOffButton.setTextColor(Color.WHITE);
             Constants.MEDIA_PLAYER_ON = true;
             (Constants.CURRENT_CONTEXT).startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
@@ -84,13 +84,13 @@ public class SettingsFragment extends Fragment {
         this.musicOffButton = root.findViewById(R.id.music_off);
         this.musicOffButton.getLayoutParams().width = this.buttonsWidth / 2;
         if(!Constants.MEDIA_PLAYER_ON) {
-            this.musicOffButton.setBackgroundColor(Color.WHITE);
+            this.musicOffButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOffButton.setTextColor(Color.BLACK);
         }
         this.musicOffButton.setOnClickListener(v -> {
-            this.musicOffButton.setBackgroundColor(Color.WHITE);
+            this.musicOffButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOffButton.setTextColor(Color.BLACK);
-            this.musicOnButton.setBackgroundColor(Color.BLACK);
+            this.musicOnButton.setBackgroundResource(R.drawable.button_selector);
             this.musicOnButton.setTextColor(Color.WHITE);
             Constants.MEDIA_PLAYER_ON = false;
             (Constants.CURRENT_CONTEXT).stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
@@ -100,33 +100,33 @@ public class SettingsFragment extends Fragment {
         this.fps30Button = root.findViewById(R.id.fps_30_button);
         this.fpsButtons.add(fps30Button);
         if(Constants.FPS == 30) {
-            this.fps30Button.setBackgroundColor(Color.WHITE);
+            this.fps30Button.setBackgroundResource(R.drawable.button_selected);
             this.fps30Button.setTextColor(Color.BLACK);
         }
         this.fps30Button.setOnClickListener(v -> {
             Constants.FPS = 30;
             for(Button b: this.fpsButtons) {
-                b.setBackgroundColor(Color.BLACK);
+                b.setBackgroundResource(R.drawable.button_selector);
                 b.setTextColor(Color.WHITE);
             }
-            fps30Button.setBackgroundColor(Color.WHITE);
-            fps30Button.setTextColor(Color.BLACK);
+            this.fps30Button.setBackgroundResource(R.drawable.button_selected);
+            this.fps30Button.setTextColor(Color.BLACK);
         });
 
         this.fps60Button = root.findViewById(R.id.fps_60_button);
         this.fpsButtons.add(fps60Button);
         if(Constants.FPS == 60) {
-            this.fps60Button.setBackgroundColor(Color.WHITE);
+            this.fps60Button.setBackgroundResource(R.drawable.button_selected);
             this.fps60Button.setTextColor(Color.BLACK);
         }
         this.fps60Button.setOnClickListener(v -> {
             Constants.FPS = 60;
             for(Button b: this.fpsButtons) {
-                b.setBackgroundColor(Color.BLACK);
+                b.setBackgroundResource(R.drawable.button_selector);
                 b.setTextColor(Color.WHITE);
             }
-            fps60Button.setBackgroundColor(Color.WHITE);
-            fps60Button.setTextColor(Color.BLACK);
+            this.fps60Button.setBackgroundResource(R.drawable.button_selected);
+            this.fps60Button.setTextColor(Color.BLACK);
         });
 
         for(Button b: this.fpsButtons) {
@@ -137,7 +137,7 @@ public class SettingsFragment extends Fragment {
         this.soundOneButton = root.findViewById(R.id.sound_one);
         this.soundButtons.add(this.soundOneButton);
         if(Constants.PLAYING_SONG == R.raw.giorno_giovanna) {
-            this.soundOneButton.setBackgroundColor(Color.WHITE);
+            this.soundOneButton.setBackgroundResource(R.drawable.button_selected);
             this.soundOneButton.setTextColor(Color.BLACK);
         }
         this.soundOneButton.setOnClickListener(v -> {
@@ -146,18 +146,18 @@ public class SettingsFragment extends Fragment {
                 this.musicOffButton.performClick();
                 this.musicOnButton.performClick();
                 for(Button b: this.soundButtons) {
-                    b.setBackgroundColor(Color.BLACK);
+                    b.setBackgroundResource(R.drawable.button_selector);
                     b.setTextColor(Color.WHITE);
                 }
-                soundOneButton.setBackgroundColor(Color.WHITE);
-                soundOneButton.setTextColor(Color.BLACK);
+                this.soundOneButton.setBackgroundResource(R.drawable.button_selected);
+                this.soundOneButton.setTextColor(Color.BLACK);
             }
         });
 
         this.soundTwoButton = root.findViewById(R.id.sound_two);
         this.soundButtons.add(this.soundTwoButton);
         if(Constants.PLAYING_SONG == R.raw.bruno_bucciarati) {
-            this.soundTwoButton.setBackgroundColor(Color.WHITE);
+            this.soundTwoButton.setBackgroundResource(R.drawable.button_selected);
             this.soundTwoButton.setTextColor(Color.BLACK);
         }
         this.soundTwoButton.setOnClickListener(v -> {
@@ -166,18 +166,18 @@ public class SettingsFragment extends Fragment {
                 this.musicOffButton.performClick();
                 this.musicOnButton.performClick();
                 for(Button b: this.soundButtons) {
-                    b.setBackgroundColor(Color.BLACK);
+                    b.setBackgroundResource(R.drawable.button_selector);
                     b.setTextColor(Color.WHITE);
                 }
-                soundTwoButton.setBackgroundColor(Color.WHITE);
-                soundTwoButton.setTextColor(Color.BLACK);
+                this.soundTwoButton.setBackgroundResource(R.drawable.button_selected);
+                this.soundTwoButton.setTextColor(Color.BLACK);
             }
         });
 
         this.soundThreeButton = root.findViewById(R.id.sound_three);
         this.soundButtons.add(this.soundThreeButton);
         if(Constants.PLAYING_SONG == R.raw.dio_brando) {
-            this.soundThreeButton.setBackgroundColor(Color.WHITE);
+            this.soundThreeButton.setBackgroundResource(R.drawable.button_selected);
             this.soundThreeButton.setTextColor(Color.BLACK);
         }
         this.soundThreeButton.setOnClickListener(v -> {
@@ -186,11 +186,11 @@ public class SettingsFragment extends Fragment {
                 this.musicOffButton.performClick();
                 this.musicOnButton.performClick();
                 for(Button b: this.soundButtons) {
-                    b.setBackgroundColor(Color.BLACK);
+                    b.setBackgroundResource(R.drawable.button_selector);
                     b.setTextColor(Color.WHITE);
                 }
-                soundThreeButton.setBackgroundColor(Color.WHITE);
-                soundThreeButton.setTextColor(Color.BLACK);
+                this.soundThreeButton.setBackgroundResource(R.drawable.button_selected);
+                this.soundThreeButton.setTextColor(Color.BLACK);
             }
         });
 
@@ -200,13 +200,22 @@ public class SettingsFragment extends Fragment {
 
         //BACK
         this.backButton = root.findViewById(R.id.back_button);
+        this.backButton.setBackgroundResource(R.drawable.button_selector);
         this.backButton.setOnClickListener(v -> {
+            this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             MenuFragment menuFragment = new MenuFragment(this.manager);
-            t.add(R.id.fragment_container, menuFragment);
+            t.replace(R.id.fragment_container, menuFragment);
             t.commit();
         });
 
         return root;
     }
+
+    @Override
+    public void onDestroy() {
+        this.animation.stop();
+        super.onDestroy();
+    }
+
 }

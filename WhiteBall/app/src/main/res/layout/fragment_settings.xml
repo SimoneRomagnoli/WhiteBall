@@ -11,14 +11,18 @@
     <LinearLayout
         android:id="@+id/settings_vertical_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:paddingTop="40dp"
+        android:background="@drawable/bg_selector"
+        android:layout_gravity="center"
+        android:gravity="center">
 
     <LinearLayout
         android:id="@+id/settings_layouts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="50dp"
         android:orientation="horizontal"
         android:layout_gravity="center">
 
@@ -34,10 +38,10 @@
                 android:id="@+id/fps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000000"
                 android:fontFamily="sans-serif-medium"
                 android:paddingTop="3dp"
                 android:text="@string/fps"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
 
@@ -45,10 +49,10 @@
                 android:id="@+id/music"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000000"
                 android:fontFamily="sans-serif-medium"
                 android:paddingTop="3dp"
                 android:text="@string/music"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
 
@@ -56,9 +60,9 @@
                 android:id="@+id/sound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000000"
                 android:fontFamily="sans-serif-medium"
                 android:paddingTop="3dp"
+                android:textAlignment="center"
                 android:text="@string/sound"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
@@ -66,10 +70,11 @@
 
         <LinearLayout
             android:id="@+id/settings_options"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingLeft="20dp">
 
             <LinearLayout
                 android:id="@+id/fps_layout"

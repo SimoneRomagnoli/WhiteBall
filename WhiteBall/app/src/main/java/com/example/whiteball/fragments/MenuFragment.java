@@ -64,15 +64,22 @@ public class MenuFragment extends Fragment {
             this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             SettingsFragment settingsFragment = new SettingsFragment(this.manager);
-            t.add(R.id.fragment_container, settingsFragment);
+            t.replace(R.id.fragment_container, settingsFragment);
             t.commit();
         });
 
         this.exitButton = root.findViewById(R.id.close_app_button);
         this.exitButton.setOnClickListener(v -> {
+            this.animation.stop();
             //come si chiude la applicazione?
         });
 
         return root;
+    }
+
+    @Override
+    public void onDestroy() {
+        this.animation.stop();
+        super.onDestroy();
     }
 }

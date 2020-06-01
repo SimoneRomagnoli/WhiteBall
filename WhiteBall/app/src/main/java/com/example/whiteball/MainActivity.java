@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.whiteball.fragments.MenuFragment;
 import com.example.whiteball.model.GameMode;

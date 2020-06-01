@@ -38,9 +38,9 @@ public class ModelImpl implements Model {
         square.setVelocity(new Vector2DImpl(0, 1));
         this.entities.add(square);
 
-        Triangle triangle = (Triangle)EntityFactoryImpl.createTriangle(new Point(500, 0));
-        triangle.setVelocity(new Vector2DImpl(0, 1));
-        this.entities.add(triangle);
+        //Triangle triangle = (Triangle)EntityFactoryImpl.createTriangle(new Point(500, 0));
+        //triangle.setVelocity(new Vector2DImpl(0, 1));
+        //this.entities.add(triangle);
 
         Rhombus rhombus = (Rhombus)EntityFactoryImpl.createRhombus(new Point(800, 0));
         rhombus.setVelocity(new Vector2DImpl(0, 1));

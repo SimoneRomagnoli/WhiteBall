@@ -22,6 +22,11 @@ public class ToroidalComponent extends AbstractComponent {
             } else if (position.x + this.getParent().getDimension() > Constants.SCREEN_WIDTH) {
                 this.getParent().setPosition(new Point(0, position.y));
             }
+            if (position.y < 0) {
+                this.getParent().setPosition(new Point(position.x, Constants.SCREEN_HEIGHT - this.getParent().getDimension()));
+            } else if (position.y + this.getParent().getDimension() > Constants.SCREEN_HEIGHT) {
+                this.getParent().setPosition(new Point(position.x, 0));
+            }
         }
     }
 }

@@ -27,4 +27,6 @@
     <string name="game_mode">MODE</string>
     <string name="x">x</string>
     <string name="y">y</string>
+    <string name="authors">by Alessandro Marcantoni and Simone Romagnoli</string>
+    <string name="xy">xy</string>
 </resources>

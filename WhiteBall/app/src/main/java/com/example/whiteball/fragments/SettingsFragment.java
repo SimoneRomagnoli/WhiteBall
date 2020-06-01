@@ -37,6 +37,7 @@ public class SettingsFragment extends Fragment {
 
     private List<Button> modsButtons;
     private Button xModButton;
+    private Button xyModButton;
     private Button yModButton;
 
     private List<Button> fpsButtons;
@@ -107,6 +108,24 @@ public class SettingsFragment extends Fragment {
             }
             this.yModButton.setBackgroundResource(R.drawable.button_selected);
             this.yModButton.setTextColor(Color.BLACK);
+        });
+
+        this.xyModButton = root.findViewById(R.id.xy_mode_button);
+        this.modsButtons.add(xyModButton);
+        if(Constants.GAME_MODE == GameMode.XY) {
+            this.xyModButton.setBackgroundResource(R.drawable.button_selected);
+            this.xyModButton.setTextColor(Color.BLACK);
+        } else {
+            this.xyModButton.setBackgroundResource(R.drawable.button_selector);
+        }
+        this.xyModButton.setOnClickListener(v -> {
+            Constants.GAME_MODE = GameMode.XY;
+            for(Button b: this.modsButtons) {
+                b.setBackgroundResource(R.drawable.button_selector);
+                b.setTextColor(Color.WHITE);
+            }
+            this.xyModButton.setBackgroundResource(R.drawable.button_selected);
+            this.xyModButton.setTextColor(Color.BLACK);
         });
 
         for(Button b: this.modsButtons) {

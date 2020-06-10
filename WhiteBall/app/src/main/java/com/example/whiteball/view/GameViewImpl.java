@@ -26,7 +26,7 @@ public class GameViewImpl extends View implements GameView {
                 1, Color.GREEN,
                 2, Color.MAGENTA,
                 3, Color.YELLOW,
-                4, Color.BLUE
+                4, Color.CYAN
         );
     }
 

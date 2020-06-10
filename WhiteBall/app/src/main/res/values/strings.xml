@@ -25,8 +25,13 @@
     <string name="two">2</string>
     <string name="three">3</string>
     <string name="game_mode">MODE</string>
-    <string name="x">x</string>
-    <string name="y">y</string>
+    <string name="x">X</string>
+    <string name="y">Y</string>
     <string name="authors">by Alessandro Marcantoni and Simone Romagnoli</string>
-    <string name="xy">xy</string>
+    <string name="xy">XY</string>
+    <string name="preferences">com.example.whiteball.PREFERENCES</string>
+    <string name="x_high_score">x_high_score</string>
+    <string name="y_high_score">y_high_score</string>
+    <string name="xy_high_score">xy_high_score</string>
+    <string name="scores">scores</string>
 </resources>

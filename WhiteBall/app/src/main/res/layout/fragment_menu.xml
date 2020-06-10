@@ -37,12 +37,22 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/settings_button"
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#000000"
+        android:text="@string/settings"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/score_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#000000"
-            android:text="@string/settings"
+            android:text="@string/scores"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
     </LinearLayout>

@@ -32,6 +32,7 @@ public class MenuFragment extends Fragment {
     private AnimationDrawable animation;
     private Button startButton;
     private Button settingsButton;
+    private Button scoreButton;
 
     public MenuFragment(FragmentManager manager) {
         this.manager = manager;
@@ -64,6 +65,15 @@ public class MenuFragment extends Fragment {
             FragmentTransaction t = this.manager.beginTransaction();
             SettingsFragment settingsFragment = new SettingsFragment(this.manager);
             t.replace(R.id.fragment_container, settingsFragment);
+            t.commit();
+        });
+
+        this.scoreButton = root.findViewById(R.id.score_button);
+        this.scoreButton.setOnClickListener(v -> {
+            this.animation.stop();
+            FragmentTransaction t = this.manager.beginTransaction();
+            ScoreFragment scoreFragment = new ScoreFragment(this.manager);
+            t.replace(R.id.fragment_container, scoreFragment);
             t.commit();
         });
 

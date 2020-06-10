@@ -1,8 +1,12 @@
 package com.example.whiteball.controller;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.whiteball.model.GameMode;
 import com.example.whiteball.utility.Constants;
 import com.example.whiteball.R;
 import com.example.whiteball.fragments.GameOverFragment;
@@ -48,6 +52,8 @@ public class GameLoop extends Thread {
             if(this.model.isGameOver()) {
                 this.stopGameLoop();
 
+                checkScore();
+
                 FragmentTransaction t = this.manager.beginTransaction();
                 GameOverFragment gameOverFragment = new GameOverFragment(this.manager);
                 t.add(R.id.fragment_container, gameOverFragment);
@@ -77,6 +83,35 @@ public class GameLoop extends Thread {
             }
 
             lastTime = currentTime;
+        }
+    }
+
+    private void checkScore() {
+        SharedPreferences sp = Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE);
+        long defaultValue = 0;
+        long newHighScore = this.model.getElapsedTime();
+
+        if(Constants.GAME_MODE.equals(GameMode.X)) {
+            long oldHighScore = sp.getLong(Constants.CURRENT_CONTEXT.getString(R.string.x_high_score), defaultValue);
+            if(newHighScore > oldHighScore) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putLong(Constants.CURRENT_CONTEXT.getString(R.string.x_high_score), newHighScore);
+                editor.commit();
+            }
+        } else if(Constants.GAME_MODE.equals(GameMode.Y)) {
+            long oldHighScore = sp.getLong(Constants.CURRENT_CONTEXT.getString(R.string.y_high_score), defaultValue);
+            if(newHighScore > oldHighScore) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putLong(Constants.CURRENT_CONTEXT.getString(R.string.y_high_score), newHighScore);
+                editor.commit();
+            }
+        } else if(Constants.GAME_MODE.equals(GameMode.XY)) {
+            long oldHighScore = sp.getLong(Constants.CURRENT_CONTEXT.getString(R.string.xy_high_score), defaultValue);
+            if(newHighScore > oldHighScore) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putLong(Constants.CURRENT_CONTEXT.getString(R.string.xy_high_score), newHighScore);
+                editor.commit();
+            }
         }
     }
 

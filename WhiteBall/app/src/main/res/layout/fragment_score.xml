@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#000000"
+    tools:context=".fragments.ScoreFragment">
+
+    <LinearLayout
+        android:id="@+id/settings_vertical_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:background="@drawable/bg_selector"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/settings_layouts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:id="@+id/settings_text_views"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp">
+
+                <TextView
+                    android:id="@+id/x_string"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="6dp"
+                    android:text="@string/x"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/y_string"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="6dp"
+                    android:text="@string/y"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/xy_string"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="6dp"
+                    android:text="@string/xy"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/settings_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginRight="50dp">
+
+                <TextView
+                    android:id="@+id/x_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="6dp"
+                    android:text="@string/x"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/y_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="6dp"
+                    android:text="@string/y"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/xy_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingTop="6dp"
+                    android:text="@string/xy"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#000000"
+            android:text="@string/back"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+    </LinearLayout>
+</FrameLayout>

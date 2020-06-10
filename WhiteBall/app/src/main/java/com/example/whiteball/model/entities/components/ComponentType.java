@@ -5,5 +5,6 @@ public enum ComponentType {
     GRAVITY,
     TOROIDAL,
     INPUT,
-    COLLISION
+    COLLISION,
+    DIRECTION;
 }

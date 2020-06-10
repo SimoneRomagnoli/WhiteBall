@@ -2,6 +2,7 @@ package com.example.whiteball.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
@@ -11,10 +12,23 @@ import com.example.whiteball.utility.Constants;
 import com.example.whiteball.R;
 import com.example.whiteball.controller.Controller;
 import com.example.whiteball.model.entities.Entity;
+import com.google.common.collect.ImmutableMap;
 
 import java.util.List;
+import java.util.Map;
 
 public class GameViewImpl extends View implements GameView {
+    private static final Map<Integer, Integer> COLOR_MAP;
+
+    static {
+        COLOR_MAP = ImmutableMap.of(
+                0, Color.RED,
+                1, Color.GREEN,
+                2, Color.MAGENTA,
+                3, Color.YELLOW,
+                4, Color.BLUE
+        );
+    }
 
     private Context context;
     private Controller controller;
@@ -67,7 +81,7 @@ public class GameViewImpl extends View implements GameView {
     private void render(Canvas canvas) {
         List<Entity> entities = this.controller.getEntities();
         for(Entity entity:entities) {
-            final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition(), entity.getDimension());
+            final ViewEntity viewEntity = new ViewEntity(entity.getType(), entity.getPosition(), entity.getDimension(), COLOR_MAP.get(entity.getRandomNumber()));
             CanvasDrawer.drawCanvas(canvas, viewEntity);
         }
     }

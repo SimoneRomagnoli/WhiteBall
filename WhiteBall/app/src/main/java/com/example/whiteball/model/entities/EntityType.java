@@ -4,5 +4,7 @@ public enum EntityType {
     SQUARE,
     BALL,
     TRIANGLE,
-    RHOMBUS
+    RHOMBUS,
+    PLAYER,
+    SHIELD;
 }

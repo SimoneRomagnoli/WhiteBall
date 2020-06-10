@@ -32,7 +32,6 @@ public class MenuFragment extends Fragment {
     private AnimationDrawable animation;
     private Button startButton;
     private Button settingsButton;
-    private Button exitButton;
 
     public MenuFragment(FragmentManager manager) {
         this.manager = manager;
@@ -66,12 +65,6 @@ public class MenuFragment extends Fragment {
             SettingsFragment settingsFragment = new SettingsFragment(this.manager);
             t.replace(R.id.fragment_container, settingsFragment);
             t.commit();
-        });
-
-        this.exitButton = root.findViewById(R.id.close_app_button);
-        this.exitButton.setOnClickListener(v -> {
-            this.animation.stop();
-            //come si chiude la applicazione?
         });
 
         return root;

@@ -1,7 +1,14 @@
-package com.example.whiteball.model.entities;
+package com.example.whiteball.model.entities.build;
 
 import android.graphics.Point;
 
+import com.example.whiteball.model.entities.Ball;
+import com.example.whiteball.model.entities.Entity;
+import com.example.whiteball.model.entities.EntityType;
+import com.example.whiteball.model.entities.Rhombus;
+import com.example.whiteball.model.entities.Square;
+import com.example.whiteball.model.entities.Triangle;
+import com.example.whiteball.model.entities.build.EntityFactory;
 import com.example.whiteball.utility.Constants;
 import com.example.whiteball.model.entities.components.CollisionComponent;
 import com.example.whiteball.model.entities.components.GravityComponent;
@@ -43,10 +50,8 @@ public class EntityFactoryImpl implements EntityFactory {
      */
     public static Entity createBall(Point position) {
         final Entity entity = new Ball(position, Constants.PLAYER_RADIUS_INT);
-        entity.addComponent(new InputComponent());
         entity.addComponent(new MovementComponent());
-        entity.addComponent(new ToroidalComponent());
-        entity.addComponent(new CollisionComponent());
+        entity.addComponent(new GravityComponent(position));
         return entity;
     }
 
@@ -58,6 +63,7 @@ public class EntityFactoryImpl implements EntityFactory {
     public static Entity createSquare(Point position) {
         final Entity entity = new Square(position, Constants.SQUARE_EDGE / 2);
         entity.addComponent(new MovementComponent());
+        entity.addComponent(new GravityComponent(position));
         return entity;
     }
 
@@ -69,7 +75,7 @@ public class EntityFactoryImpl implements EntityFactory {
     public static Entity createTriangle(Point position) {
         final Entity entity = new Triangle(position, Constants.TRIANGLE_EDGE / 2);
         entity.addComponent(new MovementComponent());
-        entity.addComponent(new GravityComponent());
+        entity.addComponent(new GravityComponent(position));
         return entity;
     }
 
@@ -81,12 +87,12 @@ public class EntityFactoryImpl implements EntityFactory {
     public static Entity createRhombus(Point position) {
         final Entity entity = new Rhombus(position, Constants.RHOMBUS_EDGE / 2);
         entity.addComponent(new MovementComponent());
-        entity.addComponent(new GravityComponent());
+        entity.addComponent(new GravityComponent(position));
         return entity;
     }
 
     private EntityType getRandomEntityType() {
-        return this.ENTITY_TYPES.get(this.RANDOM.nextInt(this.ENTITY_TYPES.size()));
+        return this.ENTITY_TYPES.get(this.RANDOM.nextInt(this.ENTITY_TYPES.size()-2));
     }
 
     @FunctionalInterface

@@ -2,11 +2,16 @@ package com.example.whiteball.model;
 
 import android.graphics.Point;
 
+import com.example.whiteball.model.entities.build.EntityFactoryImpl;
+import com.example.whiteball.model.entities.build.Spawner;
+import com.example.whiteball.model.entities.build.SpawnerImpl;
+import com.example.whiteball.model.entities.components.GravityComponent;
+import com.example.whiteball.model.entities.components.MovementComponent;
+import com.example.whiteball.model.entities.components.ToroidalComponent;
 import com.example.whiteball.utility.Constants;
 import com.example.whiteball.controller.Command;
 import com.example.whiteball.model.entities.Ball;
 import com.example.whiteball.model.entities.Entity;
-import com.example.whiteball.model.entities.EntityFactoryImpl;
 import com.example.whiteball.model.entities.Rhombus;
 import com.example.whiteball.model.entities.Square;
 import com.example.whiteball.model.entities.Triangle;
@@ -23,6 +28,7 @@ import java.util.List;
 public class ModelImpl implements Model {
     private final int Y_COORDINATE = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 10;
 
+    private Spawner spawner;
     private List<Entity> entities;
     private Ball player;
     private long time;
@@ -30,10 +36,17 @@ public class ModelImpl implements Model {
     public ModelImpl() {
         this.time = 0;
         this.entities = new ArrayList<>();
-        this.player = (Ball)EntityFactoryImpl.createBall(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE));
+        this.player = new Ball(new Point(Constants.SCREEN_WIDTH / 2, Y_COORDINATE), Constants.PLAYER_RADIUS_INT);
+        this.player.addComponent(new MovementComponent());
+        this.player.addComponent(new ToroidalComponent());
+        this.player.addComponent(new CollisionComponent());
+        this.player.addComponent(new InputComponent());
         this.player.declarePlayer();
+
         this.entities.add(this.player);
 
+        this.spawner = new SpawnerImpl();
+/*
         Square square = (Square)EntityFactoryImpl.createSquare(new Point(200, 0));
         square.setVelocity(new Vector2DImpl(0, 1));
         this.entities.add(square);
@@ -44,7 +57,7 @@ public class ModelImpl implements Model {
 
         Rhombus rhombus = (Rhombus)EntityFactoryImpl.createRhombus(new Point(800, 0));
         rhombus.setVelocity(new Vector2DImpl(0, 1));
-        this.entities.add(rhombus);
+        this.entities.add(rhombus);*/
     }
 
     @Override
@@ -60,6 +73,11 @@ public class ModelImpl implements Model {
     @Override
     public void update(final long dt) {
         this.time += dt;
+
+        if(!this.spawner.isSpawning() && this.time > 3000) {
+            this.spawner.start();
+        }
+        this.spawner.update(this.entities, this.time);
 
         for (Entity entity: this.entities) {
             if (entity.isPlayer()) {

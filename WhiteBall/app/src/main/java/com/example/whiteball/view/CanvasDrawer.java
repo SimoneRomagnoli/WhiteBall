@@ -11,40 +11,49 @@ import com.example.whiteball.model.entities.EntityType;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
+import java.util.Random;
 
 public class CanvasDrawer {
     private static final Map<EntityType, Drawer> DRAWER_MAP;
 
     static {
         DRAWER_MAP = ImmutableMap.of(
+                EntityType.PLAYER, CanvasDrawer::drawWhiteBall,
                 EntityType.BALL, CanvasDrawer::drawBall,
+                //EntityType.SHIELD, CanvasDrawer::drawShield,
                 EntityType.SQUARE, CanvasDrawer::drawSquare,
                 EntityType.TRIANGLE, CanvasDrawer::drawTriangle,
                 EntityType.RHOMBUS, CanvasDrawer::drawRhombus
         );
     }
 
+
+
     public static void drawCanvas(Canvas canvas, ViewEntity viewEntity) {
-        DRAWER_MAP.get(viewEntity.getType()).draw(canvas, viewEntity.getPosition(), viewEntity.getDimension());
+        DRAWER_MAP.get(viewEntity.getType()).draw(canvas, viewEntity.getPosition(), viewEntity.getDimension(), viewEntity.getPaint());
     }
 
-    private static void drawBall(Canvas canvas, Point position, Integer dimension) {
-        Paint paint = new Paint();
+    private static void drawWhiteBall(Canvas canvas, Point position, Integer dimension, Paint paint) {
         paint.setColor(Color.WHITE);
         canvas.drawCircle(position.x, position.y, dimension, paint);
     }
 
-    private static void drawSquare(Canvas canvas, Point position, Integer dimension) {
+    private static void drawShield(Canvas canvas, Point position, Integer dimension, Paint paint) {
+        paint.setColor(Color.CYAN);
+        canvas.drawCircle(position.x, position.y, dimension, paint);
+    }
+
+    private static void drawBall(Canvas canvas, Point position, Integer dimension, Paint paint) {
+        canvas.drawCircle(position.x, position.y, dimension, paint);
+    }
+
+    private static void drawSquare(Canvas canvas, Point position, Integer dimension, Paint paint) {
         final Rect rectangle = new Rect(position.x - dimension / 2, position.y - dimension / 2, position.x + dimension / 2, position.y + dimension / 2);
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
         canvas.drawRect(rectangle, paint);
     }
 
-    private static void drawTriangle(Canvas canvas, Point position, Integer dimension) {
+    private static void drawTriangle(Canvas canvas, Point position, Integer dimension, Paint paint) {
         int halfWidth = dimension / 2;
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
 
         Path path = new Path();
         path.moveTo(position.x, position.y - halfWidth); // Top
@@ -56,10 +65,8 @@ public class CanvasDrawer {
         canvas.drawPath(path, paint);
     }
 
-    private static void drawRhombus(Canvas canvas, Point position, Integer dimension) {
+    private static void drawRhombus(Canvas canvas, Point position, Integer dimension, Paint paint) {
         int halfWidth = dimension / 2;
-        Paint paint = new Paint();
-        paint.setColor(Color.YELLOW);
 
         Path path = new Path();
         path.moveTo(position.x, position.y + halfWidth); // Top
@@ -74,6 +81,6 @@ public class CanvasDrawer {
 
     @FunctionalInterface
     private interface Drawer {
-        void draw(Canvas canvas, Point position, Integer dimension);
+        void draw(Canvas canvas, Point position, Integer dimension, Paint paint);
     }
 }

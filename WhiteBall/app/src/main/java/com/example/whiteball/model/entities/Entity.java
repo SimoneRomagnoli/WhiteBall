@@ -36,5 +36,7 @@ public interface Entity {
 
     boolean isPlayer();
 
+    int getRandomNumber();
+
     void declarePlayer();
 }

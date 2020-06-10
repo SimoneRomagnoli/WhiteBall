@@ -8,7 +8,6 @@ import android.hardware.SensorManager;
 
 import com.example.whiteball.model.GameMode;
 import com.example.whiteball.utility.Constants;
-import com.example.whiteball.model.CommandType;
 
 import java.util.ArrayList;
 import java.util.List;

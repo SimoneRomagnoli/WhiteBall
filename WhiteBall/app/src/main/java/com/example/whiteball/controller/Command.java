@@ -1,7 +1,5 @@
 package com.example.whiteball.controller;
 
-import com.example.whiteball.model.CommandType;
-
 /**
  * A command instance.
  */

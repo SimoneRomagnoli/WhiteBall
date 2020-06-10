@@ -1,4 +1,4 @@
-package com.example.whiteball.model;
+package com.example.whiteball.controller;
 
 public enum CommandType {
     MOVE_LEFT,

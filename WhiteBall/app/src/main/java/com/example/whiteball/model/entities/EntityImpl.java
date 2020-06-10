@@ -9,12 +9,14 @@ import com.example.whiteball.model.entities.components.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class EntityImpl implements Entity {
 
     protected Point position;
     protected Vector2D velocity;
     protected EntityType type;
+    protected int random;
     protected Area area;
     protected int radius;
     private final List<Component> components;
@@ -26,6 +28,8 @@ public abstract class EntityImpl implements Entity {
         this.area = new Area(this.position, this.radius);
         this.velocity = new Vector2DImpl(0, 0);
         this.components = new ArrayList<>();
+        Random r = new Random();
+        random = r.nextInt(EntityType.values().length - 1);
     }
 
     @Override
@@ -57,6 +61,11 @@ public abstract class EntityImpl implements Entity {
     public Area getArea() { return this.area; }
 
     @Override
+    public int getRandomNumber() {
+        return this.random;
+    }
+
+    @Override
     public void update(final long dt) {
         // God let me use lambdas pt.3
         for (Component component: this.components) {
@@ -83,5 +92,6 @@ public abstract class EntityImpl implements Entity {
     @Override
     public void declarePlayer() {
         this.isPlayer = true;
+        this.type = EntityType.PLAYER;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.whiteball.model.entities.components;
 
 import com.example.whiteball.controller.Command;
+import com.example.whiteball.controller.CommandType;
 import com.example.whiteball.controller.InputManager;
-import com.example.whiteball.model.CommandType;
 import com.example.whiteball.model.entities.properties.Vector2D;
 import com.example.whiteball.model.entities.properties.Vector2DImpl;
 

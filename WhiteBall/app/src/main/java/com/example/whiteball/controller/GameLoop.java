@@ -51,13 +51,7 @@ public class GameLoop extends Thread {
 
             if(this.model.isGameOver()) {
                 this.stopGameLoop();
-
                 checkScore();
-
-                FragmentTransaction t = this.manager.beginTransaction();
-                GameOverFragment gameOverFragment = new GameOverFragment(this.manager);
-                t.add(R.id.fragment_container, gameOverFragment);
-                t.commit();
             }
 
             //Heart of the game loop: taking input, updating and rendering
@@ -84,6 +78,11 @@ public class GameLoop extends Thread {
 
             lastTime = currentTime;
         }
+
+        FragmentTransaction t = this.manager.beginTransaction();
+        GameOverFragment gameOverFragment = new GameOverFragment(this.manager);
+        t.add(R.id.fragment_container, gameOverFragment);
+        t.commit();
     }
 
     private void checkScore() {

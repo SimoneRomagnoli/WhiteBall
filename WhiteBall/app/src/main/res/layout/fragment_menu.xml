@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_selector"
         android:fontFamily="cursive"
-        android:paddingTop="120dp"
+        android:paddingTop="120sp"
         android:text="@string/whiteball"
         android:textAlignment="center"
         android:textColor="#FFFFFF"

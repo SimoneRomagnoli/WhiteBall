@@ -34,4 +34,5 @@
     <string name="y_high_score">y_high_score</string>
     <string name="xy_high_score">xy_high_score</string>
     <string name="scores">scores</string>
+    <string name="dot">.</string>
 </resources>

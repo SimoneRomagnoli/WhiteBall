@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".fragments.GameFragment" >
+<!--
+    <TextView
+        android:id="@+id/dot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:paddingTop="73sp"
+        android:paddingRight="52sp"
+        android:text="@string/dot"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="80sp" /> -->
 
     <LinearLayout
         android:id="@+id/paused_layout"

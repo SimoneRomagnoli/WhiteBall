@@ -22,10 +22,10 @@ public class InputManager implements SensorEventListener, InputObservable {
     private float x_input;
     private float y_input;
 
-    public InputManager(Controller controller) {
+    public InputManager() {
         this.manager = (SensorManager) Constants.CURRENT_CONTEXT.getSystemService(Context.SENSOR_SERVICE);
         this.sensor =  manager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-        this.manager.registerListener(this, this.sensor, SensorManager.SENSOR_DELAY_GAME);
+        this.registerInput();
         this.observers = new ArrayList<>();
 
         this.x_input = 0.0f;
@@ -74,5 +74,13 @@ public class InputManager implements SensorEventListener, InputObservable {
         for (InputObserver observer: this.observers) {
             observer.updateObserver(command);
         }
+    }
+
+    public void registerInput() {
+        this.manager.registerListener(this, this.sensor, SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    public void unregisterInput() {
+        this.manager.unregisterListener(this, this.sensor);
     }
 }

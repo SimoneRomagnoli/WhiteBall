@@ -19,7 +19,7 @@ public class ControllerImpl implements Controller, InputObserver {
     public ControllerImpl(Model model, GameView gameView, FragmentManager fragmentManager) {
         this.model = model;
         this.gameView = gameView;
-        this.inputManager = new InputManager(this);
+        this.inputManager = new InputManager();
         this.inputManager.addObserver(this);
         this.fragmentManager = fragmentManager;
     }
@@ -32,6 +32,7 @@ public class ControllerImpl implements Controller, InputObserver {
 
     @Override
     public void stopGameLoop() {
+        this.inputManager.unregisterInput();
         this.gameLoop.stopGameLoop();
     }
 
@@ -47,11 +48,15 @@ public class ControllerImpl implements Controller, InputObserver {
 
     @Override
     public void pauseGameLoop() {
+        this.inputManager.unregisterInput();
         this.gameLoop.pauseLoop();
     }
 
     @Override
-    public void resumeGameLoop() { this.gameLoop.resumeLoop();  }
+    public void resumeGameLoop() {
+        this.inputManager.registerInput();
+        this.gameLoop.resumeLoop();
+    }
 
     @Override
     public boolean isGameLoopPaused() { return this.gameLoop.isPaused(); }

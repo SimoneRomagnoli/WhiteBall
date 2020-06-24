@@ -98,6 +98,7 @@ public class ScoreFragment extends Fragment {
             this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             MenuFragment menuFragment = new MenuFragment(this.manager);
+            t.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             t.replace(R.id.fragment_container, menuFragment);
             t.commit();
             Constants.CURRENT_FRAGMENT = menuFragment;

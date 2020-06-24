@@ -66,6 +66,7 @@ public class MenuFragment extends Fragment {
             this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             SettingsFragment settingsFragment = new SettingsFragment(this.manager);
+            t.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             t.replace(R.id.fragment_container, settingsFragment);
             t.commit();
             Constants.CURRENT_FRAGMENT = settingsFragment;
@@ -76,6 +77,7 @@ public class MenuFragment extends Fragment {
             this.animation.stop();
             FragmentTransaction t = this.manager.beginTransaction();
             ScoreFragment scoreFragment = new ScoreFragment(this.manager);
+            t.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             t.replace(R.id.fragment_container, scoreFragment);
             t.commit();
             Constants.CURRENT_FRAGMENT = scoreFragment;

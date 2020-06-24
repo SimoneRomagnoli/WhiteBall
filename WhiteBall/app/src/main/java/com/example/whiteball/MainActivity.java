@@ -7,12 +7,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.example.whiteball.fragments.GameFragment;
 import com.example.whiteball.fragments.MenuFragment;
@@ -42,7 +40,6 @@ public class MainActivity extends FragmentActivity {
         Constants.GAME_MODE = GameMode.X;
         Constants.PLAYING_SONG = R.raw.giorno_giovanna;
         Constants.MEDIA_PLAYER_ON = true;
-        //this.startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
         Constants.FPS = 60;
 
         setContentView(R.layout.activity_main);
@@ -56,7 +53,6 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onDestroy() {
-        //this.stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
         super.onDestroy();
     }
 

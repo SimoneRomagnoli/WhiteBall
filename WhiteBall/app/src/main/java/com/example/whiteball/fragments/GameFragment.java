@@ -95,6 +95,7 @@ public class GameFragment extends Fragment {
             GameFragment gameFragment = new GameFragment(this.manager);
             t.replace(R.id.fragment_container, gameFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = gameFragment;
         });
 
         this.exitButton = root.findViewById(R.id.exit_button);
@@ -105,6 +106,7 @@ public class GameFragment extends Fragment {
             MenuFragment menuFragment = new MenuFragment(this.manager);
             t.replace(R.id.fragment_container, menuFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = menuFragment;
         });
 
         return root;
@@ -117,5 +119,13 @@ public class GameFragment extends Fragment {
         this.gameView.launch(this.controller);
         ((View)this.gameView).setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         this.gameLayout.addView((View) this.gameView);
+    }
+
+    public void pauseGameLoop() {
+        this.controller.pauseGameLoop();
+    }
+
+    public void resumeGameLoop() {
+        this.controller.resumeGameLoop();
     }
 }

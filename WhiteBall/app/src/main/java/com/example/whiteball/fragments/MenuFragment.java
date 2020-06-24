@@ -57,6 +57,7 @@ public class MenuFragment extends Fragment {
             t.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             t.replace(R.id.fragment_container, gameFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = gameFragment;
         });
 
         this.settingsButton = root.findViewById(R.id.settings_button);
@@ -66,6 +67,7 @@ public class MenuFragment extends Fragment {
             SettingsFragment settingsFragment = new SettingsFragment(this.manager);
             t.replace(R.id.fragment_container, settingsFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = settingsFragment;
         });
 
         this.scoreButton = root.findViewById(R.id.score_button);
@@ -75,6 +77,7 @@ public class MenuFragment extends Fragment {
             ScoreFragment scoreFragment = new ScoreFragment(this.manager);
             t.replace(R.id.fragment_container, scoreFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = scoreFragment;
         });
 
         return root;

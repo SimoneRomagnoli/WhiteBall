@@ -1,10 +1,12 @@
 package com.example.whiteball.utility;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.whiteball.R;
 import com.example.whiteball.model.GameMode;
 
 public class Constants {
@@ -28,5 +30,7 @@ public class Constants {
 
     public static int MINUTE_LONG = 60000;
     public static int SECOND_LONG = 1000;
+
+    public static Fragment CURRENT_FRAGMENT;
 
 }

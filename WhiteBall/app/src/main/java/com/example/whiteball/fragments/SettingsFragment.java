@@ -1,6 +1,8 @@
 package com.example.whiteball.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -135,7 +137,7 @@ public class SettingsFragment extends Fragment {
         //MUSIC
         this.musicOnButton = root.findViewById(R.id.music_on);
         this.musicOnButton.getLayoutParams().width = this.buttonsWidth / 2;
-        if(Constants.MEDIA_PLAYER_ON) {
+        if(Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE).getBoolean("MUSIC", true)) {
             this.musicOnButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOnButton.setTextColor(Color.BLACK);
         } else {
@@ -148,11 +150,16 @@ public class SettingsFragment extends Fragment {
             this.musicOffButton.setTextColor(Color.WHITE);
             Constants.MEDIA_PLAYER_ON = true;
             (Constants.CURRENT_CONTEXT).startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+
+            SharedPreferences sp = Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean(Constants.CURRENT_CONTEXT.getString(R.string.music), true);
+            editor.commit();
         });
 
         this.musicOffButton = root.findViewById(R.id.music_off);
         this.musicOffButton.getLayoutParams().width = this.buttonsWidth / 2;
-        if(!Constants.MEDIA_PLAYER_ON) {
+        if(!Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE).getBoolean("MUSIC", true)) {
             this.musicOffButton.setBackgroundResource(R.drawable.button_selected);
             this.musicOffButton.setTextColor(Color.BLACK);
         } else {
@@ -165,6 +172,11 @@ public class SettingsFragment extends Fragment {
             this.musicOnButton.setTextColor(Color.WHITE);
             Constants.MEDIA_PLAYER_ON = false;
             (Constants.CURRENT_CONTEXT).stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+
+            SharedPreferences sp = Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean(Constants.CURRENT_CONTEXT.getString(R.string.music), false);
+            editor.commit();
         });
 
         //FPS
@@ -294,6 +306,7 @@ public class SettingsFragment extends Fragment {
             MenuFragment menuFragment = new MenuFragment(this.manager);
             t.replace(R.id.fragment_container, menuFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = menuFragment;
         });
 
         return root;

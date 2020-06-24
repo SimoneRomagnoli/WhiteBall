@@ -100,6 +100,7 @@ public class ScoreFragment extends Fragment {
             MenuFragment menuFragment = new MenuFragment(this.manager);
             t.replace(R.id.fragment_container, menuFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = menuFragment;
         });
 
         return root;

@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.whiteball.fragments.GameFragment;
 import com.example.whiteball.fragments.MenuFragment;
 import com.example.whiteball.model.GameMode;
 import com.example.whiteball.utility.AudioManager;
@@ -49,7 +51,7 @@ public class MainActivity extends FragmentActivity {
         MenuFragment menuFragment = new MenuFragment(this.manager);
         transaction.add(R.id.fragment_container, menuFragment);
         transaction.commit();
-
+        Constants.CURRENT_FRAGMENT = menuFragment;
     }
 
     @Override
@@ -61,12 +63,22 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        this.stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        if (Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE).getBoolean("MUSIC", true)) {
+            this.stopService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        }
+        if (Constants.CURRENT_FRAGMENT instanceof GameFragment) {
+            ((GameFragment) Constants.CURRENT_FRAGMENT).pauseGameLoop();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        this.startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        if (Constants.CURRENT_CONTEXT.getSharedPreferences(Constants.CURRENT_CONTEXT.getString(R.string.preferences), Context.MODE_PRIVATE).getBoolean("MUSIC", true)) {
+            this.startService(new Intent(Constants.CURRENT_CONTEXT, AudioManager.class));
+        }
+        if (Constants.CURRENT_FRAGMENT instanceof GameFragment) {
+            ((GameFragment) Constants.CURRENT_FRAGMENT).resumeGameLoop();
+        }
     }
 }

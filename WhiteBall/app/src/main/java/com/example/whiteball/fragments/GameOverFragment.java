@@ -47,6 +47,7 @@ public class GameOverFragment extends Fragment {
             GameFragment gameFragment = new GameFragment(this.manager);
             t.replace(R.id.fragment_container, gameFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = gameFragment;
         });
 
         this.goToMenuButton = root.findViewById(R.id.go_to_menu_button);
@@ -55,6 +56,7 @@ public class GameOverFragment extends Fragment {
             MenuFragment menuFragment = new MenuFragment(this.manager);
             t.replace(R.id.fragment_container, menuFragment);
             t.commit();
+            Constants.CURRENT_FRAGMENT = menuFragment;
         });
 
         return root;
